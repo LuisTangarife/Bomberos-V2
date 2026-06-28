@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderHeader("Dashboard");
 
+    iniciarSistema();
+
     cargarDashboard();
 
 });
