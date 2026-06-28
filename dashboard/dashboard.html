@@ -3,87 +3,194 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>APP Bomberos</title>
+    <title>APP Bomberos</title>
 
-<link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="dashboard.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="container">
+<div class="layout">
 
-    <h1>🚒 APP BOMBEROS</h1>
+    <!-- Sidebar -->
 
-    <p class="subtitle">
-        Sistema Integral de Gestión
-    </p>
+    <aside class="sidebar">
 
-    <div class="cards">
+        <div class="logo">
 
-        <div class="card" onclick="abrirEmergencia()">
+            <i class="fa-solid fa-fire"></i>
 
-            <div class="icon">🚒</div>
+            <div>
 
-            <h2>Reporte de Emergencia</h2>
+                <h2>APP</h2>
 
-            <p>Registrar incidentes y emergencias.</p>
+                <span>Bomberos</span>
 
-        </div>
-
-        <div class="card">
-
-            <div class="icon">🚑</div>
-
-            <h2>APH</h2>
-
-            <p>Atención Prehospitalaria.</p>
-
-            <span>Próximamente</span>
+            </div>
 
         </div>
 
-        <div class="card">
+        <nav>
 
-            <div class="icon">🎁</div>
+            <a class="active">
 
-            <h2>Ayudas Humanitarias</h2>
+                <i class="fa-solid fa-house"></i>
 
-            <p>Entrega de ayudas.</p>
+                Dashboard
 
-            <span>Próximamente</span>
+            </a>
 
-        </div>
+            <a href="../index.html">
 
-        <div class="card">
+                <i class="fa-solid fa-fire-extinguisher"></i>
 
-            <div class="icon">🏢</div>
+                Emergencias
 
-            <h2>Inspecciones</h2>
+            </a>
 
-            <p>Inspecciones técnicas.</p>
+            <a>
 
-            <span>Próximamente</span>
+                <i class="fa-solid fa-truck-medical"></i>
 
-        </div>
+                APH
 
-        <div class="card">
+                <small>Próximamente</small>
 
-            <div class="icon">📊</div>
+            </a>
 
-            <h2>Reportes y Estadísticas</h2>
+            <a>
 
-            <p>Indicadores.</p>
+                <i class="fa-solid fa-box-open"></i>
 
-            <span>Próximamente</span>
+                Ayudas Humanitarias
 
-        </div>
+                <small>Próximamente</small>
 
-    </div>
+            </a>
+
+            <a>
+
+                <i class="fa-solid fa-building-shield"></i>
+
+                Inspecciones
+
+                <small>Próximamente</small>
+
+            </a>
+
+            <a>
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                Reportes
+
+                <small>Próximamente</small>
+
+            </a>
+
+        </nav>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main>
+
+        <header>
+
+            <div>
+
+                <h1>Sistema Integral de Gestión</h1>
+
+                <p>Cuerpo Oficial de Bomberos</p>
+
+            </div>
+
+        </header>
+
+        <section class="cards">
+
+            <div class="card red" onclick="location.href='../index.html'">
+
+                <i class="fa-solid fa-fire-extinguisher"></i>
+
+                <h2>Reporte de Emergencia</h2>
+
+                <p>
+
+                    Registrar emergencias, incidentes y despachos.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-truck-medical"></i>
+
+                <h2>APH</h2>
+
+                <p>
+
+                    Atención Prehospitalaria.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-box-open"></i>
+
+                <h2>Ayudas Humanitarias</h2>
+
+                <p>
+
+                    Registro de ayudas entregadas.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-building-shield"></i>
+
+                <h2>Inspecciones</h2>
+
+                <p>
+
+                    Inspecciones de seguridad.
+
+                </p>
+
+            </div>
+
+            <div class="card">
+
+                <i class="fa-solid fa-chart-column"></i>
+
+                <h2>Estadísticas</h2>
+
+                <p>
+
+                    Reportes generales.
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
