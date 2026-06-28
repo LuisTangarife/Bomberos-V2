@@ -2678,3 +2678,21 @@ to{
 
 
 }
+
+.module.census{
+
+    border-color:#16a34a;
+
+}
+
+.module.census i{
+
+    color:#16a34a;
+
+}
+
+.stat-card.census{
+
+    border-left:5px solid #16a34a;
+
+}
