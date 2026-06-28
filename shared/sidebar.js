@@ -36,7 +36,7 @@ function renderSidebar(active = "") {
         <nav>
 
             <a
-                href="../dashboard/dashboard.html"
+                href="index.html"
                 class="${active === "dashboard" ? "active" : ""}">
 
                 <i class="fa-solid fa-house"></i>
@@ -46,7 +46,7 @@ function renderSidebar(active = "") {
             </a>
 
             <a
-                href="../index.html"
+                href="modules/emergencia/index.html"
                 class="${active === "emergencia" ? "active" : ""}">
 
                 <i class="fa-solid fa-fire-extinguisher"></i>
