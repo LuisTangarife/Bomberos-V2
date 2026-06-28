@@ -957,6 +957,15 @@ ANIMACIÓN
 
 }
 
+/*==================================================
+ CENSOS
+==================================================*/
+.stat-card.census .stat-icon{
+
+    background:#16a34a;
+    color:#fff;
+
+}
 
 /*==================================================
  EFECTO DE LUZ
@@ -1404,6 +1413,27 @@ INSPECCIONES
 
 }
 
+/*==================================================
+ CENSOS
+==================================================*/
+
+.module.census{
+
+    border-color:#16a34a;
+
+}
+
+.module.census i{
+
+    color:#16a34a;
+
+}
+
+.stat-card.census{
+
+    border-left:5px solid #16a34a;
+
+}
 
 /*==================================================
 ESTADÍSTICAS
@@ -2676,23 +2706,5 @@ to{
 
 }
 
-
-}
-
-.module.census{
-
-    border-color:#16a34a;
-
-}
-
-.module.census i{
-
-    color:#16a34a;
-
-}
-
-.stat-card.census{
-
-    border-left:5px solid #16a34a;
 
 }
