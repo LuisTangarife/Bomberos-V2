@@ -1,1 +1,706 @@
+:root{
 
+    --primary:#cc2200;
+    --primary-dark:#a91b00;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --info:#2563eb;
+
+    --background:#f4f6fa;
+    --card:#ffffff;
+
+    --text:#20242c;
+    --text-light:#6b7280;
+
+    --border:#e5e7eb;
+
+    --radius:18px;
+
+    --shadow:
+    0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.inspection-page{
+
+    padding:30px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+    background:var(--background);
+
+    min-height:100vh;
+
+}
+.page-hero{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #cc2200,
+        #ef4444
+    );
+
+    color:white;
+
+    border-radius:22px;
+
+    padding:35px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.hero-badge{
+
+    display:inline-flex;
+
+    gap:8px;
+
+    align-items:center;
+
+    background:rgba(255,255,255,.15);
+
+    padding:8px 18px;
+
+    border-radius:999px;
+
+    margin-bottom:15px;
+
+}
+
+.page-hero h1{
+
+    font-size:2.2rem;
+
+    margin-bottom:12px;
+
+}
+
+.page-hero p{
+
+    max-width:650px;
+
+    opacity:.95;
+
+    line-height:1.7;
+
+}
+
+.hero-icon{
+
+    width:130px;
+
+    height:130px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(255,255,255,.15);
+
+    font-size:4rem;
+
+}
+
+.card{
+
+    position:relative;
+
+    background:white;
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    border:1px solid #ececec;
+
+    transition:.25s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-2px);
+
+}
+
+.card h2{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin:0;
+
+    padding:18px 24px;
+
+    color:white;
+
+    font-size:1.05rem;
+
+    font-weight:700;
+
+}
+
+.card h2 i{
+
+    font-size:1.2rem;
+
+}
+
+.card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    bottom:0;
+
+    width:6px;
+
+}
+.card .grid,
+
+.card .table-responsive,
+
+.card .photo-actions,
+
+.card .photo-preview,
+
+.card .signature-grid{
+
+    padding:24px;
+
+}
+.grid{
+
+    display:grid;
+
+    gap:20px;
+
+}
+
+.grid-2{
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+}
+
+.grid-4{
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+
+}
+
+.full-width{
+
+    grid-column:1/-1;
+
+}
+
+.form-group{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+}
+
+.form-group label{
+
+    font-weight:600;
+
+    color:var(--text);
+
+}
+
+.form-group input,
+
+.form-group select,
+
+.form-group textarea{
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+
+    background:white;
+
+}
+
+.form-group textarea{
+
+    resize:vertical;
+
+}
+
+.form-group input:focus,
+
+.form-group select:focus,
+
+.form-group textarea:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:
+    0 0 0 4px rgba(204,34,0,.12);
+
+}
+
+.table-responsive{
+
+    overflow:auto;
+
+}
+
+.inspection-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+.inspection-table th{
+
+    background:#f7f8fb;
+
+    color:#374151;
+
+    font-weight:700;
+
+    padding:14px;
+
+    border-bottom:2px solid var(--border);
+
+}
+
+.inspection-table td{
+
+    padding:12px;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.inspection-table input[type=text],
+
+.inspection-table input[type=number],
+
+.inspection-table select{
+
+    width:100%;
+
+}
+
+.photo-actions{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.photo-preview{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fill,minmax(170px,1fr));
+
+    gap:18px;
+
+}
+
+.photo-preview img{
+
+    width:100%;
+
+    height:170px;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.signature-grid{
+
+    display:grid;
+
+    gap:30px;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(380px,1fr));
+
+}
+
+.signature-grid canvas{
+
+    width:100%;
+
+    height:220px;
+
+    border:2px dashed #cfcfcf;
+
+    border-radius:15px;
+
+    background:#fafafa;
+
+    touch-action:none;
+
+}
+
+.clear-signature{
+
+    margin-top:15px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+.actions button,
+
+.photo-actions button{
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:12px;
+
+    padding:14px 22px;
+
+    color:white;
+
+    font-weight:600;
+
+    transition:.25s;
+
+}
+
+.primary{
+
+    background:var(--primary);
+
+}
+
+.primary:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.secondary{
+
+    background:#6b7280;
+
+}
+
+.warning{
+
+    background:var(--warning);
+
+}
+
+.info{
+
+    background:var(--info);
+
+}
+
+.photo-actions button{
+
+    background:var(--primary);
+
+}
+
+@media(max-width:768px){
+
+.page-hero{
+
+    flex-direction:column;
+
+    text-align:center;
+
+    gap:25px;
+
+}
+
+.page-hero h1{
+
+    font-size:1.8rem;
+
+}
+
+.signature-grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.actions{
+
+    flex-direction:column;
+
+}
+
+.actions button{
+
+    width:100%;
+
+}
+
+.photo-actions{
+
+    flex-direction:column;
+
+}
+
+.photo-actions button{
+
+    width:100%;
+
+}
+
+}
+
+.info h2{
+
+    background:#2563eb;
+
+}
+
+.establecimiento h2{
+
+    background:#0f766e;
+
+}
+
+.construccion h2{
+
+    background:#8b5cf6;
+
+}
+
+.electricidad h2{
+
+    background:#f59e0b;
+
+}
+
+.almacenamiento h2{
+
+    background:#7c3aed;
+
+}
+
+.orden h2{
+
+    background:#10b981;
+
+}
+
+.riesgo h2{
+
+    background:#dc2626;
+
+}
+
+.combustible h2{
+
+    background:#ea580c;
+
+}
+
+.extintores h2{
+
+    background:#2563eb;
+
+}
+
+.sistemas h2{
+
+    background:#0891b2;
+
+}
+
+.seguridad h2{
+
+    background:#16a34a;
+
+}
+
+.evidencias h2{
+
+    background:#4f46e5;
+
+}
+
+.recomendaciones h2{
+
+    background:#d97706;
+
+}
+
+.resultado h2{
+
+    background:#059669;
+
+}
+
+.firmas h2{
+
+    background:#374151;
+
+}
+
+.info::before{
+
+    background:#2563eb;
+
+}
+
+.establecimiento::before{
+
+    background:#0f766e;
+
+}
+
+.construccion::before{
+
+    background:#8b5cf6;
+
+}
+
+.electricidad::before{
+
+    background:#f59e0b;
+
+}
+
+.almacenamiento::before{
+
+    background:#7c3aed;
+
+}
+
+.orden::before{
+
+    background:#10b981;
+
+}
+
+.riesgo::before{
+
+    background:#dc2626;
+
+}
+
+.combustible::before{
+
+    background:#ea580c;
+
+}
+
+.extintores::before{
+
+    background:#2563eb;
+
+}
+
+.sistemas::before{
+
+    background:#0891b2;
+
+}
+
+.seguridad::before{
+
+    background:#16a34a;
+
+}
+
+.evidencias::before{
+
+    background:#4f46e5;
+
+}
+
+.recomendaciones::before{
+
+    background:#d97706;
+
+}
+
+.resultado::before{
+
+    background:#059669;
+
+}
+
+.firmas::before{
+
+    background:#374151;
+
+}
+
+.card h2{
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
+
+}
