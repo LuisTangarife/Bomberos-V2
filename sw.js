@@ -1,16 +1,28 @@
 const STATIC_CACHE = 'bomberos-static-v14';
 const DYNAMIC_CACHE = 'bomberos-dynamic-v14';
 
-const STATIC_FILES = [
-  './',
-  './index.html',
-  './styles.css',
-  './app.js',
-  './manifest.json',
-  './offline.html'
-  
-  './icons/icon-192-v4.png',
-  './icons/icon-512-v4.png'
+const CACHE = "bomberos-v2";
+
+const FILES = [
+    "./",
+    "./index.html",
+
+    "./dashboard.css",
+    "./dashboard.js",
+
+    "./shared/shared.css",
+    "./shared/shared.js",
+    "./shared/sidebar.js",
+    "./shared/header.js",
+
+    "./modules/emergencia/index.html",
+    "./modules/emergencia/emergencia.css",
+    "./modules/emergencia/app.js",
+
+    "./manifest.json",
+
+    "./icons/icon-192-v4.png",
+    "./icons/icon-512-v4.png"
 ];
 
 // =========================
