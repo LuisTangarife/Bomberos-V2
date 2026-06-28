@@ -381,13 +381,38 @@
 
     height:220px;
 
-    border:2px dashed #cfcfcf;
+    display:block;
 
-    border-radius:15px;
+    border:2px dashed #d4d4d8;
 
-    background:#fafafa;
+    border-radius:16px;
+
+    background:white;
+
+    cursor:crosshair;
 
     touch-action:none;
+
+    transition:.25s;
+
+}
+.signature-grid canvas:hover{
+
+    border-color:var(--primary);
+
+}
+
+.signature-status{
+
+    display:block;
+
+    margin-top:10px;
+
+    text-align:center;
+
+    color:#9ca3af;
+
+    font-size:.9rem;
 
 }
 
