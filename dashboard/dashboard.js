@@ -1,36 +1,65 @@
-async function loadComponent(containerId, file) {
-    try {
-        const response = await fetch(file);
+/*=============================================
+ DASHBOARD V2
+=============================================*/
 
-        if (!response.ok) {
-            throw new Error(file);
-        }
+document.addEventListener("DOMContentLoaded", () => {
 
-        const html = await response.text();
+    renderSidebar("dashboard");
 
-        document.getElementById(containerId).innerHTML = html;
+    renderHeader("Dashboard");
 
-    } catch (e) {
+    cargarDashboard();
 
-        console.error("No se pudo cargar:", file);
+});
 
-    }
-}
+/*=============================================
+ CARGAR DATOS
+=============================================*/
 
-async function initDashboard() {
+function cargarDashboard(){
 
-    await loadComponent(
-        "sidebar-container",
-        "../shared/components/sidebar.html"
-    );
+    // Temporal
 
-    await loadComponent(
-        "header-container",
-        "../shared/components/header.html"
-    );
+    document.getElementById("statEmergencias").innerHTML="0";
 
-    iniciarLayout();
+    document.getElementById("statAPH").innerHTML="0";
+
+    document.getElementById("statInspecciones").innerHTML="0";
+
+    document.getElementById("statAyudas").innerHTML="0";
 
 }
 
-document.addEventListener("DOMContentLoaded", initDashboard);
+/*=============================================
+ NAVEGACIÓN
+=============================================*/
+
+function abrirEmergencias(){
+
+    location.href="../index.html";
+
+}
+
+function abrirAPH(){
+
+    alert("Próximamente");
+
+}
+
+function abrirAyudas(){
+
+    alert("Próximamente");
+
+}
+
+function abrirInspecciones(){
+
+    alert("Próximamente");
+
+}
+
+function abrirEstadisticas(){
+
+    alert("Próximamente");
+
+}
