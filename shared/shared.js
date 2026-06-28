@@ -1,39 +1,49 @@
-document.addEventListener("DOMContentLoaded",()=>{
+function iniciarLayout() {
 
-const menu=document.getElementById("menuButton");
+    const btn = document.getElementById("menuButton");
 
-const sidebar=document.getElementById("sidebar");
+    const sidebar = document.getElementById("sidebar");
 
-if(menu){
+    if (btn && sidebar) {
 
-menu.onclick=()=>{
+        btn.onclick = () => {
 
-sidebar.classList.toggle("show");
+            sidebar.classList.toggle("show");
 
-};
+        };
 
-}
+    }
 
-const clock=document.getElementById("clock");
+    actualizarHora();
 
-function updateClock(){
-
-if(!clock) return;
-
-const now=new Date();
-
-clock.innerHTML=now.toLocaleString("es-CO",{
-
-dateStyle:"full",
-
-timeStyle:"short"
-
-});
+    setInterval(actualizarHora, 1000);
 
 }
 
-updateClock();
+function actualizarHora() {
 
-setInterval(updateClock,60000);
+    const reloj = document.getElementById("clock");
 
-});
+    if (!reloj) return;
+
+    const ahora = new Date();
+
+    reloj.innerHTML = ahora.toLocaleString("es-CO", {
+
+        weekday: "long",
+
+        year: "numeric",
+
+        month: "long",
+
+        day: "numeric",
+
+        hour: "2-digit",
+
+        minute: "2-digit",
+
+        second: "2-digit"
+
+    });
+
+}
