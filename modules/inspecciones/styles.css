@@ -704,3 +704,63 @@
     z-index:5;
 
 }
+
+.progress-card{
+
+    position:sticky;
+
+    top:12px;
+
+    z-index:90;
+
+    background:white;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+
+}
+
+.progress-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+    font-weight:600;
+
+}
+
+.progress-bar{
+
+    height:10px;
+
+    background:#ececec;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+#progressFill{
+
+    width:0;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #16a34a,
+        #22c55e
+    );
+
+    transition:.35s;
+
+}
