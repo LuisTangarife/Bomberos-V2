@@ -1,1 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>APP Bomberos | Dashboard</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- FontAwesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+    <!-- Shared -->
+
+    <link rel="stylesheet"
+          href="../shared/shared.css">
+
+    <!-- Dashboard -->
+
+    <link rel="stylesheet"
+          href="dashboard.css">
+
+</head>
+
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+
+    <div id="sidebar"></div>
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <!-- HEADER -->
+
+        <div id="header"></div>
+
+        <!-- CONTENIDO -->
+
+        <section class="dashboard">
+
+            <!-- Bienvenida -->
+
+            <div class="welcome">
+
+                <div>
+
+                    <h1>
+
+                        Sistema Integral de Gestión
+
+                    </h1>
+
+                    <p>
+
+                        Cuerpo Oficial de Bomberos
+
+                    </p>
+
+                </div>
+
+                <div class="welcome-icon">
+
+                    <i class="fa-solid fa-fire-flame-curved"></i>
+
+                </div>
+
+            </div>
+
+            <!-- Estadísticas -->
+
+            <section class="stats-grid">
+
+                <div class="stat-card emergency">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-fire-extinguisher"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Emergencias</h3>
+
+                        <span id="statEmergencias">0</span>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card aph">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-truck-medical"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>APH</h3>
+
+                        <span id="statAPH">0</span>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card inspection">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-building-shield"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Inspecciones</h3>
+
+                        <span id="statInspecciones">0</span>
+
+                    </div>
+
+                </div>
+
+                <div class="stat-card help">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Ayudas</h3>
+
+                        <span id="statAyudas">0</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Accesos rápidos -->
+
+            <section class="panel">
+
+                <h2>
+
+                    Accesos rápidos
+
+                </h2>
+
+                <div class="quick-grid">
+
+                    <button
+                        class="quick-btn emergency"
+                        onclick="abrirEmergencias()">
+
+                        <i class="fa-solid fa-fire-extinguisher"></i>
+
+                        <span>
+
+                            Reporte de Emergencia
+
+                        </span>
+
+                    </button>
+
+                    <button class="quick-btn">
+
+                        <i class="fa-solid fa-truck-medical"></i>
+
+                        <span>
+
+                            APH
+
+                        </span>
+
+                    </button>
+
+                    <button class="quick-btn">
+
+                        <i class="fa-solid fa-building-shield"></i>
+
+                        <span>
+
+                            Inspecciones
+
+                        </span>
+
+                    </button>
+
+                    <button class="quick-btn">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                        <span>
+
+                            Ayudas Humanitarias
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </section>
+
+            <!-- Actividad -->
+
+            <section class="panel">
+
+                <h2>
+
+                    Actividad reciente
+
+                </h2>
+
+                <ul class="activity">
+
+                    <li>
+
+                        <i class="fa-solid fa-circle-check"></i>
+
+                        No hay registros todavía.
+
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- Shared -->
+
+<script src="../shared/sidebar.js"></script>
+
+<script src="../shared/header.js"></script>
+
+<script src="../shared/shared.js"></script>
+
+<!-- Dashboard -->
+
+<script src="dashboard.js"></script>
+
+</body>
+
+</html>
