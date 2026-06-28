@@ -54,7 +54,7 @@ function abrirAyudas(){
 
 function abrirInspecciones(){
 
-    alert("Próximamente");
+    location.href = "modules/inspecciones/index.html";
 
 }
 
