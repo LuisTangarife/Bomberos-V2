@@ -1,49 +1,84 @@
-function iniciarLayout() {
+/*==========================================================
+ APP BOMBEROS
+ Funciones Globales
+==========================================================*/
 
-    const btn = document.getElementById("menuButton");
+function toggleSidebar(){
 
-    const sidebar = document.getElementById("sidebar");
+    const sidebar=document.getElementById("sidebar");
 
-    if (btn && sidebar) {
+    if(!sidebar)return;
 
-        btn.onclick = () => {
-
-            sidebar.classList.toggle("show");
-
-        };
-
-    }
-
-    actualizarHora();
-
-    setInterval(actualizarHora, 1000);
+    sidebar.classList.toggle("show");
 
 }
 
-function actualizarHora() {
+/*==========================================================*/
 
-    const reloj = document.getElementById("clock");
+function cerrarSidebar(){
 
-    if (!reloj) return;
+    const sidebar=document.getElementById("sidebar");
 
-    const ahora = new Date();
+    if(!sidebar)return;
 
-    reloj.innerHTML = ahora.toLocaleString("es-CO", {
+    sidebar.classList.remove("show");
 
-        weekday: "long",
+}
 
-        year: "numeric",
+/*==========================================================*/
 
-        month: "long",
+function actualizarHora(){
 
-        day: "numeric",
+    const reloj=document.getElementById("clock");
 
-        hour: "2-digit",
+    if(!reloj)return;
 
-        minute: "2-digit",
+    const fecha=new Date();
 
-        second: "2-digit"
+    reloj.innerHTML=fecha.toLocaleString("es-CO",{
+
+        weekday:"long",
+
+        year:"numeric",
+
+        month:"long",
+
+        day:"numeric",
+
+        hour:"2-digit",
+
+        minute:"2-digit"
 
     });
 
 }
+
+/*==========================================================*/
+
+function iniciarSistema(){
+
+    actualizarHora();
+
+    setInterval(actualizarHora,60000);
+
+}
+
+/*==========================================================*/
+
+window.addEventListener("resize",()=>{
+
+    if(window.innerWidth>900){
+
+        cerrarSidebar();
+
+    }
+
+});
+
+/*==========================================================*/
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+    iniciarSistema();
+
+});
