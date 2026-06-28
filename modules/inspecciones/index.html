@@ -1342,94 +1342,340 @@
 
                 <!-- Evidencias -->
 
-                <section class="card">
+               <section class="card">
 
-                    <h2>
-
+                <h2>
+            
+                    <i class="fa-solid fa-camera"></i>
+            
+                    Evidencias Fotográficas
+            
+                </h2>
+            
+                <div class="photo-actions">
+            
+                    <button
+                        type="button"
+                        id="btnCamera">
+            
                         <i class="fa-solid fa-camera"></i>
-
-                        Evidencias Fotográficas
-
-                    </h2>
-
-                </section>
+            
+                        Tomar fotografía
+            
+                    </button>
+            
+                    <button
+                        type="button"
+                        id="btnGallery">
+            
+                        <i class="fa-solid fa-images"></i>
+            
+                        Galería
+            
+                    </button>
+            
+                </div>
+            
+                <input
+                    type="file"
+                    id="photoInput"
+                    accept="image/*"
+                    capture="environment"
+                    multiple
+                    hidden>
+            
+                <div
+                    class="photo-preview"
+                    id="photoPreview">
+            
+                </div>
+            
+            </section>
 
                 <!-- Recomendaciones -->
 
                 <section class="card">
 
-                    <h2>
-
-                        <i class="fa-solid fa-clipboard-list"></i>
-
-                        Recomendaciones
-
-                    </h2>
-
+                <h2>
+                
+                <i class="fa-solid fa-clipboard-list"></i>
+                
+                Recomendaciones
+                
+                </h2>
+                
+                <div class="grid">
+                
+                <div class="form-group">
+                
+                <label>
+                
+                Recomendaciones del inspector
+                
+                </label>
+                
+                <textarea
+                
+                id="recomendaciones"
+                
+                rows="8"
+                
+                placeholder="Digite aquí las recomendaciones realizadas al establecimiento...">
+                
+                </textarea>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>
+                
+                Observaciones adicionales
+                
+                </label>
+                
+                <textarea
+                
+                id="observacionesFinales"
+                
+                rows="6"
+                
+                placeholder="Observaciones generales...">
+                
+                </textarea>
+                
+                </div>
+                
+                </div>
+                
                 </section>
 
                 <!-- Resultado -->
 
                 <section class="card">
 
-                    <h2>
-
-                        <i class="fa-solid fa-circle-check"></i>
-
-                        Resultado de la Inspección
-
-                    </h2>
-
+                <h2>
+                
+                <i class="fa-solid fa-circle-check"></i>
+                
+                Resultado de la Inspección
+                
+                </h2>
+                
+                <div class="grid grid-2">
+                
+                <div class="form-group">
+                
+                <label>
+                
+                Resultado
+                
+                </label>
+                
+                <select id="resultado">
+                
+                <option value="">
+                
+                Seleccione...
+                
+                </option>
+                
+                <option>
+                
+                Cumple requisitos
+                
+                </option>
+                
+                <option>
+                
+                Cumple con observaciones
+                
+                </option>
+                
+                <option>
+                
+                No cumple
+                
+                </option>
+                
+                <option>
+                
+                Requiere reinspección
+                
+                </option>
+                
+                </select>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>
+                
+                Fecha de reinspección
+                
+                </label>
+                
+                <input
+                type="date"
+                id="fechaReinspeccion">
+                
+                </div>
+                
+                <div class="form-group full-width">
+                
+                <label>
+                
+                Conclusión del inspector
+                
+                </label>
+                
+                <textarea
+                
+                rows="6"
+                
+                id="conclusion">
+                
+                </textarea>
+                
+                </div>
+                
+                </div>
+                
                 </section>
 
                 <!-- Firmas -->
 
                 <section class="card">
 
-                    <h2>
-
-                        <i class="fa-solid fa-signature"></i>
-
-                        Firmas
-
-                    </h2>
-
+                <h2>
+                
+                <i class="fa-solid fa-signature"></i>
+                
+                Firmas
+                
+                </h2>
+                
+                <div class="signature-grid">
+                
+                <div>
+                
+                <h3>
+                
+                Inspector
+                
+                </h3>
+                
+                <canvas
+                
+                id="firmaInspector"
+                
+                width="450"
+                
+                height="180">
+                
+                </canvas>
+                
+                <button
+                type="button"
+                class="clear-signature"
+                data-canvas="firmaInspector">
+                
+                Limpiar
+                
+                </button>
+                
+                </div>
+                
+                <div>
+                
+                <h3>
+                
+                Representante del establecimiento
+                
+                </h3>
+                
+                <canvas
+                
+                id="firmaRepresentante"
+                
+                width="450"
+                
+                height="180">
+                
+                </canvas>
+                
+                <button
+                type="button"
+                class="clear-signature"
+                data-canvas="firmaRepresentante">
+                
+                Limpiar
+                
+                </button>
+                
+                </div>
+                
+                </div>
+                
                 </section>
-
                 <!-- Botones -->
 
                 <section class="actions">
-
-                    <button type="button"
-                            class="secondary"
-                            onclick="history.back()">
-
-                        <i class="fa-solid fa-arrow-left"></i>
-
-                        Volver
-
-                    </button>
-
-                    <button type="button"
-                            id="btnPdf">
-
-                        <i class="fa-solid fa-file-pdf"></i>
-
-                        Generar PDF
-
-                    </button>
-
-                    <button type="submit"
-                            class="primary">
-
-                        <i class="fa-solid fa-floppy-disk"></i>
-
-                        Guardar Inspección
-
-                    </button>
-
+                
+                <button
+                
+                type="button"
+                
+                class="secondary"
+                
+                onclick="history.back()">
+                
+                <i class="fa-solid fa-arrow-left"></i>
+                
+                Volver
+                
+                </button>
+                
+                <button
+                
+                type="reset"
+                
+                class="warning">
+                
+                <i class="fa-solid fa-eraser"></i>
+                
+                Limpiar
+                
+                </button>
+                
+                <button
+                
+                type="button"
+                
+                id="btnPdf"
+                
+                class="info">
+                
+                <i class="fa-solid fa-file-pdf"></i>
+                
+                Generar PDF
+                
+                </button>
+                
+                <button
+                
+                type="submit"
+                
+                class="primary">
+                
+                <i class="fa-solid fa-floppy-disk"></i>
+                
+                Guardar Inspección
+                
+                </button>
+                
                 </section>
-
             </form>
 
         </main>
