@@ -450,9 +450,111 @@
                         Características Constructivas
 
                     </h2>
-
-                    <div class="grid">
-
+                    
+                    <div class="grid grid-2">
+                    
+                        <div class="form-group">
+                    
+                            <label>Tiempo de construcción</label>
+                    
+                            <select id="tiempoConstruccion">
+                    
+                                <option value="">Seleccione...</option>
+                    
+                                <option>Menor a 5 años</option>
+                    
+                                <option>5 - 10 años</option>
+                    
+                                <option>10 - 20 años</option>
+                    
+                                <option>Más de 20 años</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Material predominante</label>
+                    
+                            <select id="material">
+                    
+                                <option>Concreto</option>
+                    
+                                <option>Adobe</option>
+                    
+                                <option>Madera</option>
+                    
+                                <option>Metálica</option>
+                    
+                                <option>Mixta</option>
+                    
+                                <option>Otro</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Cumple NSR-10</label>
+                    
+                            <select id="nsr">
+                    
+                                <option>Sí</option>
+                    
+                                <option>No</option>
+                    
+                                <option>No aplica</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Tipo de cubierta</label>
+                    
+                            <select id="cubierta">
+                    
+                                <option>Teja metálica</option>
+                    
+                                <option>Teja plástica</option>
+                    
+                                <option>Fibrocemento</option>
+                    
+                                <option>Concreto</option>
+                    
+                                <option>Otra</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>¿Posee mezanines?</label>
+                    
+                            <select id="mezanines">
+                    
+                                <option>No</option>
+                    
+                                <option>Sí</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Observaciones</label>
+                    
+                            <textarea
+                                id="obsConstruccion"
+                                rows="3"></textarea>
+                    
+                        </div>
+                    
                     </div>
 
                 </section>
@@ -469,8 +571,80 @@
 
                     </h2>
 
-                    <div class="grid">
+                    <div class="grid grid-2">
 
+                        <div class="form-group">
+                    
+                            <label>Tipo de instalación</label>
+                    
+                            <select id="tipoInstalacion">
+                    
+                                <option>Canalizada</option>
+                    
+                                <option>Externa</option>
+                    
+                                <option>Mixta</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Cumple RETIE</label>
+                    
+                            <select id="retie">
+                    
+                                <option>Sí</option>
+                    
+                                <option>No</option>
+                    
+                                <option>No aplica</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>¿Existen cables empalmados?</label>
+                    
+                            <select id="empalmados">
+                    
+                                <option>No</option>
+                    
+                                <option>Sí</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Estado general</label>
+                    
+                            <select id="estadoElectrico">
+                    
+                                <option>Bueno</option>
+                    
+                                <option>Regular</option>
+                    
+                                <option>Malo</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group full-width">
+                    
+                            <label>Observaciones</label>
+                    
+                            <textarea
+                                id="obsElectricas"
+                                rows="3"></textarea>
+                    
+                        </div>
+                    
                     </div>
 
                 </section>
@@ -487,8 +661,50 @@
 
                     </h2>
 
-                    <div class="grid">
+                    <div class="grid grid-2">
 
+                        <div class="form-group">
+                    
+                            <label>Estado del almacenamiento</label>
+                    
+                            <select id="estadoAlmacenamiento">
+                    
+                                <option>Bueno</option>
+                    
+                                <option>Regular</option>
+                    
+                                <option>Malo</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>Ventilación</label>
+                    
+                            <select id="ventilacion">
+                    
+                                <option>Natural</option>
+                    
+                                <option>Forzada</option>
+                    
+                                <option>Mixta</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group full-width">
+                    
+                            <label>Observaciones</label>
+                    
+                            <textarea
+                                id="obsAlmacenamiento"
+                                rows="3"></textarea>
+                    
+                        </div>
+                    
                     </div>
 
                 </section>
@@ -505,80 +721,623 @@
 
                     </h2>
 
-                    <div class="grid">
+                    <div class="grid grid-2">
 
+                        <div class="form-group">
+                    
+                            <label>Estado</label>
+                    
+                            <select id="ordenAseo">
+                    
+                                <option>Bueno</option>
+                    
+                                <option>Regular</option>
+                    
+                                <option>Malo</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>¿Posee certificado de ubicación?</label>
+                    
+                            <select id="certificado">
+                    
+                                <option>Sí</option>
+                    
+                                <option>No</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group full-width">
+                    
+                            <label>Observaciones</label>
+                    
+                            <textarea
+                                id="obsOrden"
+                                rows="3"></textarea>
+                    
+                        </div>
+                    
                     </div>
 
                 </section>
 
                 <!-- Riesgos -->
 
-                <section class="card">
+               <section class="card">
 
                     <h2>
-
+                
                         <i class="fa-solid fa-fire"></i>
-
+                
                         Riesgos de Incendio
-
+                
                     </h2>
-
+                
+                    <div class="table-responsive">
+                
+                        <table class="inspection-table">
+                
+                            <thead>
+                
+                                <tr>
+                
+                                    <th>Elemento</th>
+                
+                                    <th>Sí</th>
+                
+                                    <th>No</th>
+                
+                                    <th>N.A.</th>
+                
+                                    <th>Observaciones</th>
+                
+                                </tr>
+                
+                            </thead>
+                
+                            <tbody>
+                
+                                <tr>
+                
+                                    <td>Veladoras</td>
+                
+                                    <td><input type="radio" name="veladoras" value="Si"></td>
+                
+                                    <td><input type="radio" name="veladoras" value="No"></td>
+                
+                                    <td><input type="radio" name="veladoras" value="NA"></td>
+                
+                                    <td><input type="text"></td>
+                
+                                </tr>
+                
+                                <tr>
+                
+                                    <td>Instalaciones eléctricas defectuosas</td>
+                
+                                    <td><input type="radio" name="instalaciones" value="Si"></td>
+                
+                                    <td><input type="radio" name="instalaciones" value="No"></td>
+                
+                                    <td><input type="radio" name="instalaciones" value="NA"></td>
+                
+                                    <td><input type="text"></td>
+                
+                                </tr>
+                
+                                <tr>
+                
+                                    <td>Breakers</td>
+                
+                                    <td><input type="radio" name="breaker" value="Si"></td>
+                
+                                    <td><input type="radio" name="breaker" value="No"></td>
+                
+                                    <td><input type="radio" name="breaker" value="NA"></td>
+                
+                                    <td><input type="text"></td>
+                
+                                </tr>
+                
+                                <tr>
+                
+                                    <td>Tomacorrientes</td>
+                
+                                    <td><input type="radio" name="tomacorrientes" value="Si"></td>
+                
+                                    <td><input type="radio" name="tomacorrientes" value="No"></td>
+                
+                                    <td><input type="radio" name="tomacorrientes" value="NA"></td>
+                
+                                    <td><input type="text"></td>
+                
+                                </tr>
+                
+                                <tr>
+                
+                                    <td>Cables eléctricos</td>
+                
+                                    <td><input type="radio" name="cables" value="Si"></td>
+                
+                                    <td><input type="radio" name="cables" value="No"></td>
+                
+                                    <td><input type="radio" name="cables" value="NA"></td>
+                
+                                    <td><input type="text"></td>
+                
+                                </tr>
+                
+                                <tr>
+                
+                                    <td>Llamas abiertas</td>
+                
+                                    <td><input type="radio" name="llamas" value="Si"></td>
+                
+                                    <td><input type="radio" name="llamas" value="No"></td>
+                
+                                    <td><input type="radio" name="llamas" value="NA"></td>
+                
+                                    <td><input type="text"></td>
+                
+                                </tr>
+                
+                            </tbody>
+                
+                        </table>
+                
+                    </div>
+                
                 </section>
-
                 <!-- Materiales -->
 
                 <section class="card">
 
-                    <h2>
-
-                        <i class="fa-solid fa-gas-pump"></i>
-
-                        Materiales Combustibles
-
-                    </h2>
-
+                <h2>
+                
+                <i class="fa-solid fa-gas-pump"></i>
+                
+                Materiales Combustibles
+                
+                </h2>
+                
+                <div class="table-responsive">
+                
+                <table class="inspection-table">
+                
+                <thead>
+                
+                <tr>
+                
+                <th>Material</th>
+                
+                <th>Existe</th>
+                
+                <th>Cantidad</th>
+                
+                <th>Descripción</th>
+                
+                </tr>
+                
+                </thead>
+                
+                <tbody>
+                
+                <tr>
+                
+                <td>Gas GLP</td>
+                
+                <td><input type="checkbox"></td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Gas Natural</td>
+                
+                <td><input type="checkbox"></td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Líquidos inflamables</td>
+                
+                <td><input type="checkbox"></td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Papel / Cartón</td>
+                
+                <td><input type="checkbox"></td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Madera</td>
+                
+                <td><input type="checkbox"></td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Otros</td>
+                
+                <td><input type="checkbox"></td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                </tbody>
+                
+                </table>
+                
+                </div>
+                
                 </section>
 
                 <!-- Extintores -->
 
                 <section class="card">
-
-                    <h2>
-
-                        <i class="fa-solid fa-fire-extinguisher"></i>
-
-                        Extintores
-
-                    </h2>
-
+                
+                <h2>
+                
+                <i class="fa-solid fa-fire-extinguisher"></i>
+                
+                Extintores
+                
+                </h2>
+                
+                <div class="table-responsive">
+                
+                <table class="inspection-table">
+                
+                <thead>
+                
+                <tr>
+                
+                <th>Tipo</th>
+                
+                <th>Cantidad</th>
+                
+                <th>Capacidad</th>
+                
+                <th>Estado</th>
+                
+                <th>Observaciones</th>
+                
+                </tr>
+                
+                </thead>
+                
+                <tbody>
+                
+                <tr>
+                
+                <td>PQS ABC</td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                <td>
+                
+                <select>
+                
+                <option>Bueno</option>
+                
+                <option>Regular</option>
+                
+                <option>Malo</option>
+                
+                </select>
+                
+                </td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>CO₂</td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                <td>
+                
+                <select>
+                
+                <option>Bueno</option>
+                
+                <option>Regular</option>
+                
+                <option>Malo</option>
+                
+                </select>
+                
+                </td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Agua</td>
+                
+                <td><input type="number"></td>
+                
+                <td><input type="text"></td>
+                
+                <td>
+                
+                <select>
+                
+                <option>Bueno</option>
+                
+                <option>Regular</option>
+                
+                <option>Malo</option>
+                
+                </select>
+                
+                </td>
+                
+                <td><input type="text"></td>
+                
+                </tr>
+                
+                </tbody>
+                
+                </table>
+                
+                </div>
+                
                 </section>
 
                 <!-- Sistemas -->
 
                 <section class="card">
 
-                    <h2>
-
-                        <i class="fa-solid fa-satellite-dish"></i>
-
-                        Sistemas Contra Incendio
-
-                    </h2>
-
+                <h2>
+                
+                <i class="fa-solid fa-satellite-dish"></i>
+                
+                Sistemas Contra Incendio
+                
+                </h2>
+                
+                <div class="grid grid-2">
+                
+                <div class="form-group">
+                
+                <label>Detector de humo</label>
+                
+                <select>
+                
+                <option>Sí</option>
+                
+                <option>No</option>
+                
+                </select>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>Detector de temperatura</label>
+                
+                <select>
+                
+                <option>Sí</option>
+                
+                <option>No</option>
+                
+                </select>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>Gabinetes</label>
+                
+                <select>
+                
+                <option>Sí</option>
+                
+                <option>No</option>
+                
+                </select>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>Rociadores automáticos</label>
+                
+                <select>
+                
+                <option>Sí</option>
+                
+                <option>No</option>
+                
+                </select>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>Sistema de alarma</label>
+                
+                <select>
+                
+                <option>Sí</option>
+                
+                <option>No</option>
+                
+                </select>
+                
+                </div>
+                
+                <div class="form-group">
+                
+                <label>Otros</label>
+                
+                <input type="text">
+                
+                </div>
+                
+                </div>
+                
                 </section>
 
                 <!-- Seguridad Humana -->
 
                 <section class="card">
 
-                    <h2>
-
-                        <i class="fa-solid fa-people-group"></i>
-
-                        Seguridad Humana
-
-                    </h2>
-
+                <h2>
+                
+                <i class="fa-solid fa-people-group"></i>
+                
+                Seguridad Humana
+                
+                </h2>
+                
+                <div class="table-responsive">
+                
+                <table class="inspection-table">
+                
+                <thead>
+                
+                <tr>
+                
+                <th>Elemento</th>
+                
+                <th>Sí</th>
+                
+                <th>No</th>
+                
+                <th>N.A.</th>
+                
+                </tr>
+                
+                </thead>
+                
+                <tbody>
+                
+                <tr>
+                
+                <td>Salidas de emergencia</td>
+                
+                <td><input type="radio" name="salidas" value="Si"></td>
+                
+                <td><input type="radio" name="salidas" value="No"></td>
+                
+                <td><input type="radio" name="salidas" value="NA"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Señalización</td>
+                
+                <td><input type="radio" name="senalizacion" value="Si"></td>
+                
+                <td><input type="radio" name="senalizacion" value="No"></td>
+                
+                <td><input type="radio" name="senalizacion" value="NA"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Iluminación de emergencia</td>
+                
+                <td><input type="radio" name="iluminacion" value="Si"></td>
+                
+                <td><input type="radio" name="iluminacion" value="No"></td>
+                
+                <td><input type="radio" name="iluminacion" value="NA"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Plan de emergencias</td>
+                
+                <td><input type="radio" name="plan" value="Si"></td>
+                
+                <td><input type="radio" name="plan" value="No"></td>
+                
+                <td><input type="radio" name="plan" value="NA"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Botiquín</td>
+                
+                <td><input type="radio" name="botiquin" value="Si"></td>
+                
+                <td><input type="radio" name="botiquin" value="No"></td>
+                
+                <td><input type="radio" name="botiquin" value="NA"></td>
+                
+                </tr>
+                
+                <tr>
+                
+                <td>Camilla</td>
+                
+                <td><input type="radio" name="camilla" value="Si"></td>
+                
+                <td><input type="radio" name="camilla" value="No"></td>
+                
+                <td><input type="radio" name="camilla" value="NA"></td>
+                
+                </tr>
+                
+                </tbody>
+                
+                </table>
+                
+                </div>
+                
                 </section>
 
                 <!-- Evidencias -->
