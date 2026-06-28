@@ -10,88 +10,118 @@
 
     <title>APP Bomberos | Dashboard</title>
 
-    <!-- Google Fonts -->
+    <link rel="stylesheet" href="../shared/shared.css">
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="dashboard.css">
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
           rel="stylesheet">
 
-    <!-- FontAwesome -->
-
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
-
-    <!-- Shared -->
-
-    <link rel="stylesheet" 
-            href="shared/shared.css">
-
-    <!-- Dashboard -->
-
-    <link rel="stylesheet"
-          href="dashboard.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+          rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="layout">
+<div class="app-layout">
 
     <!-- SIDEBAR -->
+    <aside id="sidebar"></aside>
 
-    <div id="sidebar"></div>
+    <!-- CONTENIDO -->
 
-    <!-- MAIN -->
-
-    <main class="main">
+    <div class="content">
 
         <!-- HEADER -->
+        <header id="header"></header>
 
-        <div id="header"></div>
+        <main class="dashboard">
 
-        <!-- CONTENIDO -->
+            <!-- ===================================================== -->
+            <!-- HERO -->
+            <!-- ===================================================== -->
 
-        <section class="dashboard">
+            <section class="hero">
 
-            <!-- Bienvenida -->
+                <div class="hero-left">
 
-            <div class="welcome">
+                    <div class="hero-badge">
 
-                <div>
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+
+                        Centro de Operaciones
+
+                    </div>
 
                     <h1>
 
-                        Sistema Integral de Gestión
+                        Sistema Integral<br>
+
+                        de Gestión Operativa
 
                     </h1>
 
                     <p>
 
-                        Cuerpo Oficial de Bomberos
+                        Plataforma institucional para la gestión de
+                        emergencias, atención prehospitalaria,
+                        ayudas humanitarias, inspecciones,
+                        estadísticas y operaciones del
+                        Cuerpo Oficial de Bomberos.
 
                     </p>
 
+                    <div class="hero-actions">
+
+                        <button
+                            onclick="location.href='../modules/emergencia/index.html'">
+
+                            <i class="fa-solid fa-fire-extinguisher"></i>
+
+                            Nueva Emergencia
+
+                        </button>
+
+                        <button class="secondary">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                            Ver Estadísticas
+
+                        </button>
+
+                    </div>
+
                 </div>
 
-                <div class="welcome-logo">
-                
-                    <img src="../icons/flame.svg">
-                
+                <div class="hero-right">
+
+                    <div class="hero-circle">
+
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+
+                    </div>
+
+                    <div class="hero-status">
+
+                        <span class="online"></span>
+
+                        Sistema Operativo
+
+                    </div>
+
                 </div>
 
-            </div>
+            </section>
 
-            <!-- Estadísticas -->
+            <!-- ===================================================== -->
+            <!-- ESTADÍSTICAS -->
+            <!-- ===================================================== -->
 
             <section class="stats-grid">
 
-                <div class="stat-card emergency">
+                <article class="stat-card emergency">
 
                     <div class="stat-icon">
 
@@ -100,176 +130,298 @@
                     </div>
 
                     <div>
+
+                        <small>Emergencias</small>
+
+                        <h2 id="totalEmergencias">125</h2>
+
+                        <span>Este mes</span>
+
+                    </div>
+
+                </article>
+
+                <article class="stat-card aph">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-truck-medical"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>APH</small>
+
+                        <h2>38</h2>
+
+                        <span>Registros</span>
+
+                    </div>
+
+                </article>
+
+                <article class="stat-card inspection">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-building-shield"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Inspecciones</small>
+
+                        <h2>62</h2>
+
+                        <span>Completadas</span>
+
+                    </div>
+
+                </article>
+
+                <article class="stat-card help">
+
+                    <div class="stat-icon">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                    </div>
+
+                    <div>
+
+                        <small>Ayudas</small>
+
+                        <h2>17</h2>
+
+                        <span>Entregadas</span>
+
+                    </div>
+
+                </article>
+
+            </section>
+
+            <!-- ===================================================== -->
+            <!-- MÓDULOS -->
+            <!-- ===================================================== -->
+
+            <section class="modules">
+
+                <h2>
+
+                    <i class="fa-solid fa-grid-2"></i>
+
+                    Módulos del Sistema
+
+                </h2>
+
+                <div class="module-grid">
+
+                    <article class="module emergency"
+                             onclick="location.href='../modules/emergencia/index.html'">
+
+                        <i class="fa-solid fa-fire-extinguisher"></i>
 
                         <h3>Emergencias</h3>
 
-                        <span id="statEmergencias">0</span>
+                        <p>
 
-                    </div>
+                            Registro completo de incidentes,
+                            despachos y recursos.
 
-                </div>
+                        </p>
 
-                <div class="stat-card aph">
+                    </article>
 
-                    <div class="stat-icon">
+                    <article class="module">
 
                         <i class="fa-solid fa-truck-medical"></i>
-
-                    </div>
-
-                    <div>
 
                         <h3>APH</h3>
 
-                        <span id="statAPH">0</span>
+                        <p>
 
-                    </div>
+                            Atención Prehospitalaria.
 
-                </div>
+                        </p>
 
-                <div class="stat-card inspection">
+                        <span>Próximamente</span>
 
-                    <div class="stat-icon">
+                    </article>
+
+                    <article class="module">
+
+                        <i class="fa-solid fa-box-open"></i>
+
+                        <h3>Ayudas Humanitarias</h3>
+
+                        <p>
+
+                            Gestión y entrega de ayudas.
+
+                        </p>
+
+                        <span>Próximamente</span>
+
+                    </article>
+
+                    <article class="module">
 
                         <i class="fa-solid fa-building-shield"></i>
-
-                    </div>
-
-                    <div>
 
                         <h3>Inspecciones</h3>
 
-                        <span id="statInspecciones">0</span>
+                        <p>
 
-                    </div>
+                            Inspecciones de seguridad.
 
-                </div>
+                        </p>
 
-                <div class="stat-card help">
+                        <span>Próximamente</span>
 
-                    <div class="stat-icon">
+                    </article>
 
-                        <i class="fa-solid fa-box-open"></i>
+                    <article class="module">
 
-                    </div>
+                        <i class="fa-solid fa-chart-column"></i>
 
-                    <div>
+                        <h3>Estadísticas</h3>
 
-                        <h3>Ayudas</h3>
+                        <p>
 
-                        <span id="statAyudas">0</span>
+                            Indicadores y reportes.
 
-                    </div>
+                        </p>
 
-                </div>
+                        <span>Próximamente</span>
 
-            </section>
-
-            <!-- Accesos rápidos -->
-
-            <section class="panel">
-
-                <h2>
-
-                    Accesos rápidos
-
-                </h2>
-
-                <div class="quick-grid">
-
-                    <button
-                        class="quick-btn emergency"
-                        onclick="abrirEmergencias()">
-
-                        <i class="fa-solid fa-fire-extinguisher"></i>
-
-                        <span>
-
-                            Reporte de Emergencia
-
-                        </span>
-
-                    </button>
-
-                    <button class="quick-btn">
-
-                        <i class="fa-solid fa-truck-medical"></i>
-
-                        <span>
-
-                            APH
-
-                        </span>
-
-                    </button>
-
-                    <button class="quick-btn">
-
-                        <i class="fa-solid fa-building-shield"></i>
-
-                        <span>
-
-                            Inspecciones
-
-                        </span>
-
-                    </button>
-
-                    <button class="quick-btn">
-
-                        <i class="fa-solid fa-box-open"></i>
-
-                        <span>
-
-                            Ayudas Humanitarias
-
-                        </span>
-
-                    </button>
+                    </article>
 
                 </div>
 
             </section>
 
-            <!-- Actividad -->
+            <!-- ===================================================== -->
+            <!-- PANEL -->
+            <!-- ===================================================== -->
 
-            <section class="panel">
+            <div class="dashboard-columns">
 
-                <h2>
+                <!-- ACCIONES -->
 
-                    Actividad reciente
+                <section class="panel">
 
-                </h2>
+                    <h2>
 
-                <ul class="activity">
+                        <i class="fa-solid fa-bolt"></i>
 
-                    <li>
+                        Accesos rápidos
 
-                        <i class="fa-solid fa-circle-check"></i>
+                    </h2>
 
-                        No hay registros todavía.
+                    <div class="quick-grid">
 
-                    </li>
+                        <button>
 
-                </ul>
+                            <i class="fa-solid fa-plus"></i>
 
-            </section>
+                            Nueva Emergencia
 
-        </section>
+                        </button>
 
-    </main>
+                        <button>
+
+                            <i class="fa-solid fa-file-export"></i>
+
+                            Exportar
+
+                        </button>
+
+                        <button>
+
+                            <i class="fa-solid fa-chart-pie"></i>
+
+                            Estadísticas
+
+                        </button>
+
+                        <button>
+
+                            <i class="fa-solid fa-users"></i>
+
+                            Personal
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <!-- ACTIVIDAD -->
+
+                <section class="panel">
+
+                    <h2>
+
+                        <i class="fa-solid fa-clock-rotate-left"></i>
+
+                        Actividad reciente
+
+                    </h2>
+
+                    <ul class="activity">
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Emergencia registrada correctamente.
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Vehículo asignado al incidente.
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Certificado generado.
+
+                        </li>
+
+                        <li>
+
+                            <i class="fa-solid fa-circle-check"></i>
+
+                            Sincronización completada.
+
+                        </li>
+
+                    </ul>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
 
 </div>
 
-<!-- Shared -->
+<script src="../shared/sidebar.js"></script>
 
-<script src="shared/sidebar.js"></script>
+<script src="../shared/header.js"></script>
 
-<script src="shared/header.js"></script>
-
-<script src="/shared/shared.js"></script>
-
-<!-- Dashboard -->
+<script src="../shared/shared.js"></script>
 
 <script src="dashboard.js"></script>
 
