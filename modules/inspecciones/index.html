@@ -95,8 +95,159 @@
 
                     <div class="grid grid-4">
 
-                        <!-- Campos -->
-
+                        <div class="form-group">
+                    
+                            <label for="numeroInspeccion">
+                    
+                                No. Inspección
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="numeroInspeccion"
+                                name="numeroInspeccion"
+                                placeholder="Generado automáticamente"
+                                readonly>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="fecha">
+                    
+                                Fecha
+                    
+                            </label>
+                    
+                            <input
+                                type="date"
+                                id="fecha"
+                                name="fecha"
+                                required>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="hora">
+                    
+                                Hora
+                    
+                            </label>
+                    
+                            <input
+                                type="time"
+                                id="hora"
+                                name="hora"
+                                required>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="estado">
+                    
+                                Estado
+                    
+                            </label>
+                    
+                            <select
+                                id="estado"
+                                name="estado">
+                    
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="En proceso">En proceso</option>
+                                <option value="Finalizada">Finalizada</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="tipoInspeccion">
+                    
+                                Tipo de inspección
+                    
+                            </label>
+                    
+                            <select
+                                id="tipoInspeccion"
+                                name="tipoInspeccion"
+                                required>
+                    
+                                <option value="">Seleccione...</option>
+                    
+                                <option>Comercial</option>
+                    
+                                <option>Industrial</option>
+                    
+                                <option>Residencial</option>
+                    
+                                <option>Institucional</option>
+                    
+                                <option>Educativa</option>
+                    
+                                <option>Hospitalaria</option>
+                    
+                                <option>Bodega</option>
+                    
+                                <option>Otra</option>
+                    
+                            </select>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="inspector">
+                    
+                                Inspector Responsable
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="inspector"
+                                name="inspector"
+                                placeholder="Nombre del inspector">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="acompanante">
+                    
+                                Acompañante
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="acompanante"
+                                name="acompanante"
+                                placeholder="Opcional">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label for="municipio">
+                    
+                                Municipio
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="municipio"
+                                name="municipio"
+                                value="Villamaría"
+                                readonly>
+                    
+                        </div>
+                    
                     </div>
 
                 </section>
@@ -113,8 +264,177 @@
 
                     </h2>
 
-                    <div class="grid grid-2">
+                   <div class="grid grid-2">
 
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Nombre del establecimiento
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="establecimiento"
+                                required>
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                NIT
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="nit">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Dirección
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="direccion">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Barrio
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="barrio">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Teléfono
+                    
+                            </label>
+                    
+                            <input
+                                type="tel"
+                                id="telefono">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Correo electrónico
+                    
+                            </label>
+                    
+                            <input
+                                type="email"
+                                id="correo">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Propietario
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="propietario">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Representante legal
+                    
+                            </label>
+                    
+                            <input
+                                type="text"
+                                id="representante">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Área (m²)
+                    
+                            </label>
+                    
+                            <input
+                                type="number"
+                                id="area">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Número de empleados
+                    
+                            </label>
+                    
+                            <input
+                                type="number"
+                                id="empleados">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Número de visitantes
+                    
+                            </label>
+                    
+                            <input
+                                type="number"
+                                id="visitantes">
+                    
+                        </div>
+                    
+                        <div class="form-group">
+                    
+                            <label>
+                    
+                                Número de niveles
+                    
+                            </label>
+                    
+                            <input
+                                type="number"
+                                id="niveles">
+                    
+                        </div>
+                    
                     </div>
 
                 </section>
