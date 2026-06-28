@@ -860,3 +860,97 @@
 }
 
 }
+
+.photo-placeholder{
+
+    width:100%;
+
+    min-height:220px;
+
+    border:2px dashed #d6d6d6;
+
+    border-radius:18px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    color:#9ca3af;
+
+    font-size:18px;
+
+}
+
+.photo-placeholder i{
+
+    font-size:55px;
+
+}
+
+.photo-card{
+
+    position:relative;
+
+    border-radius:16px;
+
+    overflow:hidden;
+
+    box-shadow:var(--shadow);
+
+    background:white;
+
+}
+
+.photo-card img{
+
+    width:100%;
+
+    height:190px;
+
+    object-fit:cover;
+
+}
+
+.photo-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:10px;
+
+    background:white;
+
+}
+
+.photo-toolbar button{
+
+    width:36px;
+
+    height:36px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    background:#f3f4f6;
+
+    transition:.25s;
+
+}
+
+.photo-toolbar button:hover{
+
+    background:#e5e7eb;
+
+}
