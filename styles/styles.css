@@ -1,1 +1,297 @@
+/* ===========================================
+   DASHBOARD V2
+=========================================== */
 
+.dashboard{
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    gap:30px;
+}
+
+/*===========================================
+  BIENVENIDA
+===========================================*/
+
+.welcome{
+    background:linear-gradient(135deg,#C62828,#E53935);
+    color:#fff;
+    border-radius:20px;
+    padding:35px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 15px 40px rgba(0,0,0,.15);
+}
+
+.welcome h1{
+    font-size:32px;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.welcome p{
+    opacity:.9;
+    font-size:16px;
+}
+
+.welcome-icon{
+    font-size:75px;
+    opacity:.25;
+}
+
+/*===========================================
+  ESTADÍSTICAS
+===========================================*/
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+    gap:20px;
+
+}
+
+.stat-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    transition:.25s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.stat-icon{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:15px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    color:#fff;
+
+    font-size:28px;
+
+}
+
+.stat-card h3{
+
+    font-size:15px;
+
+    color:#777;
+
+    margin-bottom:8px;
+
+}
+
+.stat-card span{
+
+    font-size:34px;
+
+    font-weight:700;
+
+    color:#222;
+
+}
+
+.emergency .stat-icon{
+
+    background:#D32F2F;
+
+}
+
+.aph .stat-icon{
+
+    background:#1565C0;
+
+}
+
+.inspection .stat-icon{
+
+    background:#2E7D32;
+
+}
+
+.help .stat-icon{
+
+    background:#EF6C00;
+
+}
+
+/*===========================================
+ PANEL
+===========================================*/
+
+.panel{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.panel h2{
+
+    margin-bottom:20px;
+
+    color:#222;
+
+}
+
+/*===========================================
+ ACCESOS RÁPIDOS
+===========================================*/
+
+.quick-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+    gap:18px;
+
+}
+
+.quick-btn{
+
+    border:none;
+
+    cursor:pointer;
+
+    border-radius:15px;
+
+    background:#f7f7f7;
+
+    padding:25px;
+
+    transition:.25s;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+    align-items:center;
+
+}
+
+.quick-btn:hover{
+
+    transform:translateY(-5px);
+
+    background:#ececec;
+
+}
+
+.quick-btn i{
+
+    font-size:38px;
+
+    color:#C62828;
+
+}
+
+.quick-btn span{
+
+    font-weight:600;
+
+}
+
+.quick-btn.emergency{
+
+    background:#C62828;
+
+    color:#fff;
+
+}
+
+.quick-btn.emergency i{
+
+    color:#fff;
+
+}
+
+/*===========================================
+ ACTIVIDAD
+===========================================*/
+
+.activity{
+
+    list-style:none;
+
+}
+
+.activity li{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #eee;
+
+}
+
+.activity i{
+
+    color:#2E7D32;
+
+}
+
+/*===========================================
+ RESPONSIVE
+===========================================*/
+
+@media(max-width:900px){
+
+.welcome{
+
+flex-direction:column;
+
+text-align:center;
+
+gap:20px;
+
+}
+
+.dashboard{
+
+padding:20px;
+
+}
+
+}
