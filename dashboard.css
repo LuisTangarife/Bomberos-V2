@@ -1042,6 +1042,10 @@ GRID
 CARD
 ==================================================*/
 
+/*==================================================
+CARD
+==================================================*/
+
 .module{
 
     position:relative;
@@ -1054,16 +1058,19 @@ CARD
 
     cursor:pointer;
 
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:flex-start;
+
+    min-height:260px;
+
     background:
-
         linear-gradient(
-
             180deg,
-
             rgba(255,255,255,.96),
-
             rgba(245,247,250,.95)
-
         );
 
     backdrop-filter:blur(20px);
@@ -1073,8 +1080,33 @@ CARD
     transition:.40s;
 
     box-shadow:
-
         0 15px 35px rgba(15,23,42,.08);
+
+}
+
+.module h3{
+
+    margin:18px 0 10px;
+
+}
+
+.module p{
+
+    flex:1;
+
+    margin-bottom:20px;
+
+    color:#6b7280;
+
+    line-height:1.6;
+
+}
+
+.module span{
+
+    margin-top:auto;
+
+    align-self:flex-start;
 
 }
 
