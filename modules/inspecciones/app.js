@@ -255,17 +255,11 @@ function configurarMenu(){
    FOTOS
 ========================================================= */
 
+let evidencias=[];
+
 function configurarFotos(){
 
-    const input =
-    document.getElementById(
-        "photoInput"
-    );
-
-    const preview =
-    document.getElementById(
-        "photoPreview"
-    );
+    const input=document.getElementById("photoInput");
 
     document
     .getElementById("btnCamera")
@@ -275,61 +269,247 @@ function configurarFotos(){
     .getElementById("btnGallery")
     .onclick=()=>input.click();
 
-    input.addEventListener(
-        "change",
-        ()=>{
+    input.addEventListener("change",e=>{
 
-            preview.innerHTML="";
+        [...e.target.files].forEach(file=>{
 
-            [...input.files]
-            .forEach(file=>{
-
-                const img =
-                document.createElement("img");
-
-                img.src =
-                URL.createObjectURL(file);
-
-                preview.appendChild(img);
-
-            });
+            evidencias.push(file);
 
         });
 
+        renderFotos();
+
+    });
+
+}
+function renderFotos(){
+
+    const preview=
+    document.getElementById("photoPreview");
+
+    preview.innerHTML="";
+
+    if(evidencias.length===0){
+
+        preview.innerHTML=`
+
+        <div class="photo-placeholder">
+
+            <i class="fa-solid fa-images"></i>
+
+            <span>
+
+                Aún no hay fotografías
+
+            </span>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+    evidencias.forEach((foto,index)=>{
+
+        const card=document.createElement("div");
+
+        card.className="photo-card";
+
+        card.innerHTML=`
+
+        <img src="${URL.createObjectURL(foto)}">
+
+        <div class="photo-toolbar">
+
+            <button
+                onclick="subirFoto(${index})">
+
+                <i class="fa-solid fa-arrow-up"></i>
+
+            </button>
+
+            <button
+                onclick="bajarFoto(${index})">
+
+                <i class="fa-solid fa-arrow-down"></i>
+
+            </button>
+
+            <button
+                onclick="eliminarFoto(${index})">
+
+                <i class="fa-solid fa-trash"></i>
+
+            </button>
+
+        </div>
+
+        `;
+
+        preview.appendChild(card);
+
+    });
+
+}
+function eliminarFoto(i){
+
+    evidencias.splice(i,1);
+
+    renderFotos();
+
 }
 
+function subirFoto(i){
+
+    if(i===0) return;
+
+    [evidencias[i],evidencias[i-1]]=
+
+    [evidencias[i-1],evidencias[i]];
+
+    renderFotos();
+
+}
+
+function bajarFoto(i){
+
+    if(i===evidencias.length-1) return;
+
+    [evidencias[i],evidencias[i+1]]=
+
+    [evidencias[i+1],evidencias[i]];
+
+    renderFotos();
+
+}
 /* =========================================================
    FIRMAS
 ========================================================= */
 
 function configurarFirmas(){
 
+    inicializarFirma("firmaInspector");
+
+    inicializarFirma("firmaRepresentante");
+
     document
-    .querySelectorAll(
-        ".clear-signature"
-    )
+    .querySelectorAll(".clear-signature")
     .forEach(btn=>{
 
         btn.onclick=()=>{
 
-            const canvas =
-            document.getElementById(
-                btn.dataset.canvas
-            );
-
-            const ctx =
-            canvas.getContext("2d");
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
+            limpiarFirma(btn.dataset.canvas);
 
         };
 
     });
+
+}
+
+function inicializarFirma(id){
+
+    const canvas=document.getElementById(id);
+
+    const ctx=canvas.getContext("2d");
+
+    ctx.lineWidth=2.5;
+
+    ctx.lineCap="round";
+
+    ctx.strokeStyle="#111";
+
+    let dibujando=false;
+
+    function posicion(e){
+
+        const r=canvas.getBoundingClientRect();
+
+        const t=e.touches?.[0];
+
+        return{
+
+            x:(t?t.clientX:e.clientX)-r.left,
+
+            y:(t?t.clientY:e.clientY)-r.top
+
+        };
+
+    }
+
+    function iniciar(e){
+
+        dibujando=true;
+
+        const p=posicion(e);
+
+        ctx.beginPath();
+
+        ctx.moveTo(p.x,p.y);
+
+    }
+
+    function mover(e){
+
+        if(!dibujando) return;
+
+        e.preventDefault();
+
+        const p=posicion(e);
+
+        ctx.lineTo(p.x,p.y);
+
+        ctx.stroke();
+
+    }
+
+    function terminar(){
+
+        dibujando=false;
+
+    }
+
+    canvas.addEventListener("mousedown",iniciar);
+
+    canvas.addEventListener("mousemove",mover);
+
+    canvas.addEventListener("mouseup",terminar);
+
+    canvas.addEventListener("mouseleave",terminar);
+
+    canvas.addEventListener("touchstart",iniciar);
+
+    canvas.addEventListener("touchmove",mover);
+
+    canvas.addEventListener("touchend",terminar);
+
+}
+
+function limpiarFirma(id){
+
+    const canvas=document.getElementById(id);
+
+    canvas
+    .getContext("2d")
+    .clearRect(
+
+        0,
+
+        0,
+
+        canvas.width,
+
+        canvas.height
+
+    );
+
+}
+function obtenerFirma(id){
+
+    return document
+        .getElementById(id)
+        .toDataURL("image/png");
 
 }
 
