@@ -36,10 +36,8 @@ function cargarDashboard(){
  NAVEGACIÓN
 =============================================*/
 
-function abrirEmergencias(){
-
-    location.href="../index.html";
-
+function abrirEmergencias() {
+    location.href = "modules/emergencia/index.html";
 }
 
 function abrirAPH(){
