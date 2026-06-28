@@ -473,6 +473,19 @@ function inicializarFirma(id){
 
         ctx.moveTo(p.x,p.y);
 
+       const estado =
+       canvas.parentElement.querySelector(
+       ".signature-status"
+       );
+      
+       if(estado){
+      
+           estado.textContent="Firma registrada";
+      
+           estado.style.color="#16a34a";
+      
+       }
+
     }
 
     function mover(event){
