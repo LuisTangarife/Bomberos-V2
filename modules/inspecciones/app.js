@@ -410,39 +410,64 @@ function configurarFirmas(){
 
 function inicializarFirma(id){
 
-    const canvas=document.getElementById(id);
+    const canvas =
+    document.getElementById(id);
 
-    const ctx=canvas.getContext("2d");
+    const ctx =
+    canvas.getContext("2d");
 
-    ctx.lineWidth=2.5;
-
-    ctx.lineCap="round";
-
-    ctx.strokeStyle="#111";
+    ajustarCanvas(canvas,ctx);
 
     let dibujando=false;
 
-    function posicion(e){
+    function obtenerPosicion(event){
 
-        const r=canvas.getBoundingClientRect();
+        const rect =
+        canvas.getBoundingClientRect();
 
-        const t=e.touches?.[0];
+        const escalaX =
+        canvas.width / rect.width;
+
+        const escalaY =
+        canvas.height / rect.height;
+
+        let clienteX;
+        let clienteY;
+
+        if(event.touches){
+
+            clienteX =
+            event.touches[0].clientX;
+
+            clienteY =
+            event.touches[0].clientY;
+
+        }else{
+
+            clienteX =
+            event.clientX;
+
+            clienteY =
+            event.clientY;
+
+        }
 
         return{
 
-            x:(t?t.clientX:e.clientX)-r.left,
+            x:(clienteX-rect.left)*escalaX,
 
-            y:(t?t.clientY:e.clientY)-r.top
+            y:(clienteY-rect.top)*escalaY
 
         };
 
     }
 
-    function iniciar(e){
+    function iniciar(event){
 
         dibujando=true;
 
-        const p=posicion(e);
+        const p=
+        obtenerPosicion(event);
 
         ctx.beginPath();
 
@@ -450,13 +475,14 @@ function inicializarFirma(id){
 
     }
 
-    function mover(e){
+    function mover(event){
 
         if(!dibujando) return;
 
-        e.preventDefault();
+        event.preventDefault();
 
-        const p=posicion(e);
+        const p=
+        obtenerPosicion(event);
 
         ctx.lineTo(p.x,p.y);
 
@@ -470,22 +496,49 @@ function inicializarFirma(id){
 
     }
 
-    canvas.addEventListener("mousedown",iniciar);
+    canvas.addEventListener(
+        "mousedown",
+        iniciar
+    );
 
-    canvas.addEventListener("mousemove",mover);
+    canvas.addEventListener(
+        "mousemove",
+        mover
+    );
 
-    canvas.addEventListener("mouseup",terminar);
+    canvas.addEventListener(
+        "mouseup",
+        terminar
+    );
 
-    canvas.addEventListener("mouseleave",terminar);
+    canvas.addEventListener(
+        "mouseleave",
+        terminar
+    );
 
-    canvas.addEventListener("touchstart",iniciar);
+    canvas.addEventListener(
+        "touchstart",
+        iniciar,
+        {passive:false}
+    );
 
-    canvas.addEventListener("touchmove",mover);
+    canvas.addEventListener(
+        "touchmove",
+        mover,
+        {passive:false}
+    );
 
-    canvas.addEventListener("touchend",terminar);
+    canvas.addEventListener(
+        "touchend",
+        terminar
+    );
+
+    window.addEventListener(
+        "resize",
+        ()=>ajustarCanvas(canvas,ctx)
+    );
 
 }
-
 function limpiarFirma(id){
 
     const canvas=document.getElementById(id);
@@ -510,6 +563,58 @@ function obtenerFirma(id){
     return document
         .getElementById(id)
         .toDataURL("image/png");
+
+}
+function ajustarCanvas(canvas,ctx){
+
+    const ratio =
+    window.devicePixelRatio || 1;
+
+    const ancho =
+    canvas.offsetWidth;
+
+    const alto =
+    canvas.offsetHeight;
+
+    const imagen =
+    canvas.toDataURL();
+
+    canvas.width =
+    ancho * ratio;
+
+    canvas.height =
+    alto * ratio;
+
+    ctx.scale(ratio,ratio);
+
+    ctx.lineWidth=2.5;
+
+    ctx.lineCap="round";
+
+    ctx.lineJoin="round";
+
+    ctx.strokeStyle="#111827";
+
+    if(imagen.length>6){
+
+        const img =
+        new Image();
+
+        img.onload=()=>{
+
+            ctx.drawImage(
+                img,
+                0,
+                0,
+                ancho,
+                alto
+            );
+
+        };
+
+        img.src=imagen;
+
+    }
 
 }
 
