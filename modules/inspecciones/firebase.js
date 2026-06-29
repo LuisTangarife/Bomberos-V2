@@ -78,19 +78,11 @@ export {
     storage
 
 };
-export async function guardarInspeccion(datos){
+export async function guardarInspeccion(id, datos){
 
     await setDoc(
 
-        doc(
-
-            db,
-
-            "inspecciones",
-
-            datos.consecutivo
-
-        ),
+        doc(db, "inspecciones", id),
 
         {
 
