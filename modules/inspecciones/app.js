@@ -324,6 +324,7 @@ function renderFotos(){
         <div class="photo-toolbar">
 
             <button
+                type="button"
                 onclick="subirFoto(${index})">
 
                 <i class="fa-solid fa-arrow-up"></i>
@@ -331,6 +332,7 @@ function renderFotos(){
             </button>
 
             <button
+                type="button"
                 onclick="bajarFoto(${index})">
 
                 <i class="fa-solid fa-arrow-down"></i>
@@ -338,6 +340,7 @@ function renderFotos(){
             </button>
 
             <button
+                type="button"
                 onclick="eliminarFoto(${index})">
 
                 <i class="fa-solid fa-trash"></i>
