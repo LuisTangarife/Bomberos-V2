@@ -285,6 +285,28 @@ function construirInspeccion(){
 
         estado: obtenerValor("estado"),
 
+        estadoDocumento: "ACTIVA",
+        
+        version: 1,
+        
+        ultimaEdicion: new Date().toISOString(),
+        
+        inspector:{
+        
+            nombre: obtenerValor("nombreInspector"),
+        
+            cargo: obtenerValor("cargoInspector")
+        
+        },
+        
+        firmas:{
+        
+            inspector: obtenerFirma("firmaInspector"),
+        
+            representante: obtenerFirma("firmaRepresentante")
+        
+        },
+        
         evidencias:[...evidencias]
 
     };
@@ -890,6 +912,28 @@ async function guardarFormulario(e){
         }
 
     }
+
+}
+
+function reiniciarFormulario(){
+
+    document
+        .getElementById("inspectionForm")
+        .reset();
+
+    evidencias = [];
+
+    renderFotos();
+
+    limpiarFirma("firmaInspector");
+
+    limpiarFirma("firmaRepresentante");
+
+    establecerFechaHora();
+
+    generarConsecutivo();
+
+    actualizarProgreso();
 
 }
 
