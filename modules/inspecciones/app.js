@@ -669,3 +669,98 @@ function configurarAutoGuardado(){
         });
 
 }
+
+// ==============================
+// FORMULARIO INSPECCIÓN
+// ==============================
+
+const formInspeccion = document.getElementById("formInspeccion");
+
+if (formInspeccion) {
+
+    formInspeccion.addEventListener("submit", guardarInspeccion);
+
+}
+
+async function guardarInspeccion(e){
+   validarFormulario();
+
+    e.preventDefault();
+
+    try{
+
+        const btn = e.submitter;
+
+        if(btn){
+
+            btn.disabled = true;
+
+            btn.innerHTML = `
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                Guardando...
+            `;
+
+        }
+
+        // Aquí construiremos el objeto inspección
+        console.log("Guardar inspección");
+
+        // temporal
+        alert("Formulario capturado correctamente.");
+
+    }
+
+    catch(error){
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+    finally{
+
+        const btn = e.submitter;
+
+        if(btn){
+
+            btn.disabled = false;
+
+            btn.innerHTML = `
+                <i class="fa-solid fa-floppy-disk"></i>
+                Guardar Inspección
+            `;
+
+        }
+
+    }
+
+}
+
+function validarFormulario(){
+
+    const requeridos = [
+
+        "fecha",
+        "direccion",
+        "tipoInspeccion"
+
+    ];
+
+    for(const id of requeridos){
+
+        const campo = document.getElementById(id);
+
+        if(!campo) continue;
+
+        if(!campo.value.trim()){
+
+            campo.focus();
+
+            throw new Error("Todos los campos obligatorios deben completarse.");
+
+        }
+
+    }
+
+}
