@@ -1,3 +1,10 @@
+import {
+
+    guardarInspeccion
+
+}
+from "./firebase.js";
+
 /* =========================================================
    APP INSPECCIONES
 ========================================================= */
@@ -813,11 +820,14 @@ const formInspeccion = document.getElementById("formInspeccion");
 
 if (formInspeccion) {
 
-    formInspeccion.addEventListener("submit", guardarInspeccion);
+    formInspeccion.addEventListener(
+       "submit",
+       guardarFormulario
+   );
 
 }
 
-async function guardarInspeccion(e){
+async function guardarFormulario(e){
 
     e.preventDefault();
 
@@ -842,9 +852,17 @@ async function guardarInspeccion(e){
 
         validarInspeccion(inspeccion);
 
-        console.log(inspeccion);
+        await guardarInspeccion(
 
-        alert("Formulario capturado correctamente.");
+          inspeccion.consecutivo,
+      
+          inspeccion
+      
+      );
+      
+      alert("Inspección guardada correctamente.");
+      
+      reiniciarFormulario();
 
     }
 
