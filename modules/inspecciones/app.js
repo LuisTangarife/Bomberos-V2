@@ -2,7 +2,9 @@ import {
 
     guardarInspeccion,
 
-    subirFotoStorage
+    subirFotoStorage,
+
+    generarConsecutivo
 
 }
 from "./firebase.js";
@@ -30,6 +32,8 @@ function init(){
     configurarFirmas();
 
     configurarAutoGuardado();
+    
+    await prepararNuevaInspeccion();
 
   
 }
@@ -915,7 +919,7 @@ function reiniciarFormulario(){
 
     establecerFechaHora();
 
-    generarConsecutivo();
+    await prepararNuevaInspeccion();
 
     actualizarProgreso();
 
@@ -946,5 +950,16 @@ function validarFormulario(){
         }
 
     }
+
+}
+async function prepararNuevaInspeccion(){
+
+    const consecutivo = await generarConsecutivo();
+
+    document.getElementById(
+
+        "numeroInspeccion"
+
+    ).value = consecutivo;
 
 }
