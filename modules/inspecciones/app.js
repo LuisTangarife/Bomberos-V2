@@ -64,41 +64,6 @@ function establecerFechaHora(){
 
 }
 
-/* =========================================================
-   CONSECUTIVO
-========================================================= */
-
-function generarConsecutivo(){
-
-    const input =
-    document.getElementById("numeroInspeccion");
-
-    if(!input) return;
-
-    let numero =
-    localStorage.getItem("consecutivoInspeccion");
-
-    if(!numero){
-
-        numero = 1;
-
-    }else{
-
-        numero =
-        parseInt(numero)+1;
-
-    }
-
-    localStorage.setItem(
-        "consecutivoInspeccion",
-        numero
-    );
-
-    input.value =
-    "INS-" +
-    String(numero).padStart(5,"0");
-
-}
 
 /* =========================================================
    PROGRESO
