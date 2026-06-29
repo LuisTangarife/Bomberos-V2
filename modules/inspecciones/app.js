@@ -2,7 +2,7 @@ import {
     guardarInspeccion,
     subirFotoStorage,
     generarConsecutivo,
-    cargarInspecciones,
+    listarInspecciones,
     eliminarInspeccion
 } from "./firebase.js";
 
@@ -100,7 +100,7 @@ async function cargarListado() {
 
     if (typeof cargarInspecciones !== "function") return;
 
-    await cargarInspecciones();
+    await listarInspecciones();
 
 }
 /* =========================================================
