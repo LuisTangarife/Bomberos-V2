@@ -24,6 +24,71 @@ import {
 from
 "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
 
+import {
+
+    runTransaction,
+
+    increment
+
+}
+from
+"https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+
+/* =========================================================
+   CONSECUTIVO
+========================================================= */
+
+export async function generarConsecutivo(){
+
+    const contadorRef = doc(
+
+        db,
+
+        "contadores",
+
+        "inspecciones"
+
+    );
+
+    return await runTransaction(db, async(transaction)=>{
+
+        const contador = await transaction.get(contadorRef);
+
+        let ultimo = 0;
+
+        if(contador.exists()){
+
+            ultimo = contador.data().ultimo || 0;
+
+        }
+
+        ultimo++;
+
+        transaction.set(
+
+            contadorRef,
+
+            {
+
+                ultimo
+
+            },
+
+            {
+
+                merge:true
+
+            }
+
+        );
+
+        return `INS-${String(ultimo).padStart(5,"0")}`;
+
+    });
+
+}
+
 /* =========================================================
    SUBIR FOTO
 ========================================================= */
