@@ -214,7 +214,75 @@ function configurarScrollTop(){
     };
 
 }
+// ======================================
+// ESTADO DEL FORMULARIO
+// ======================================
 
+let inspeccionActual = null;
+
+let evidencias = [];
+
+let modoEdicion = false;
+
+function obtenerValor(id){
+
+    const elemento = document.getElementById(id);
+
+    if(!elemento) return "";
+
+    if(elemento.type === "checkbox"){
+
+        return elemento.checked;
+
+    }
+
+    return elemento.value.trim();
+
+}
+
+function construirInspeccion(){
+
+    return{
+
+        id: inspeccionActual?.id || null,
+
+        consecutivo: obtenerValor("numeroInspeccion"),
+
+        fecha: obtenerValor("fecha"),
+
+        hora: obtenerValor("hora"),
+
+        tipoInspeccion: obtenerValor("tipoInspeccion"),
+
+        establecimiento: obtenerValor("establecimiento"),
+
+        propietario: obtenerValor("propietario"),
+
+        documento: obtenerValor("documento"),
+
+        telefono: obtenerValor("telefono"),
+
+        correo: obtenerValor("correo"),
+
+        direccion: obtenerValor("direccion"),
+
+        barrio: obtenerValor("barrio"),
+
+        municipio: obtenerValor("municipio"),
+
+        observaciones: obtenerValor("observaciones"),
+
+        recomendaciones: obtenerValor("recomendaciones"),
+
+        concepto: obtenerValor("concepto"),
+
+        estado: obtenerValor("estado"),
+
+        evidencias:[...evidencias]
+
+    };
+
+}
 /* =========================================================
    MENU
 ========================================================= */
@@ -255,7 +323,6 @@ function configurarMenu(){
    FOTOS
 ========================================================= */
 
-let evidencias=[];
 
 function configurarFotos(){
 
@@ -269,15 +336,49 @@ function configurarFotos(){
     .getElementById("btnGallery")
     .onclick=()=>input.click();
 
-    input.addEventListener("change",e=>{
+   input.addEventListener("change", async (e)=>{
+   
+       for(const archivo of e.target.files){
+   
+           const base64 = await convertirBase64(archivo);
+   
+           evidencias.push({
+   
+               id: crypto.randomUUID(),
+   
+               nombre: archivo.name,
+   
+               tipo: archivo.type,
+   
+               fecha: Date.now(),
+   
+               orden: evidencias.length + 1,
+   
+               archivo,
+   
+               preview: base64
+   
+           });
+   
+       }
+   
+       renderFotos();
+   
+   });
 
-        [...e.target.files].forEach(file=>{
+}
 
-            evidencias.push(file);
+function convertirBase64(file){
 
-        });
+    return new Promise((resolve,reject)=>{
 
-        renderFotos();
+        const reader = new FileReader();
+
+        reader.onload = ()=>resolve(reader.result);
+
+        reader.onerror = reject;
+
+        reader.readAsDataURL(file);
 
     });
 
@@ -319,7 +420,7 @@ function renderFotos(){
 
         card.innerHTML=`
 
-        <img src="${URL.createObjectURL(foto)}">
+        <img src="${foto.preview}">
 
         <div class="photo-toolbar">
 
@@ -356,9 +457,15 @@ function renderFotos(){
     });
 
 }
-function eliminarFoto(i){
+function eliminarFoto(index){
 
-    evidencias.splice(i,1);
+    evidencias.splice(index,1);
+
+    evidencias.forEach((foto,i)=>{
+
+        foto.orden = i + 1;
+
+    });
 
     renderFotos();
 
@@ -670,6 +777,34 @@ function configurarAutoGuardado(){
 
 }
 
+function validarInspeccion(inspeccion){
+
+    if(!inspeccion.fecha){
+
+        throw new Error("Seleccione la fecha.");
+
+    }
+
+    if(!inspeccion.tipoInspeccion){
+
+        throw new Error("Seleccione el tipo de inspección.");
+
+    }
+
+    if(!inspeccion.establecimiento){
+
+        throw new Error("Ingrese el establecimiento.");
+
+    }
+
+    if(!inspeccion.direccion){
+
+        throw new Error("Ingrese la dirección.");
+
+    }
+
+}
+
 // ==============================
 // FORMULARIO INSPECCIÓN
 // ==============================
@@ -683,11 +818,12 @@ if (formInspeccion) {
 }
 
 async function guardarInspeccion(e){
-   validarFormulario();
 
     e.preventDefault();
 
     try{
+
+        validarFormulario();
 
         const btn = e.submitter;
 
@@ -702,10 +838,12 @@ async function guardarInspeccion(e){
 
         }
 
-        // Aquí construiremos el objeto inspección
-        console.log("Guardar inspección");
+        const inspeccion = construirInspeccion();
 
-        // temporal
+        validarInspeccion(inspeccion);
+
+        console.log(inspeccion);
+
         alert("Formulario capturado correctamente.");
 
     }
