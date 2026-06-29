@@ -867,6 +867,11 @@ async function guardarFormulario(e){
           inspeccion.consecutivo,
       
           inspeccion
+        await guardarInspeccion(...);
+        
+        await cargarInspecciones();
+        
+        mostrarListado();
       
       );
       
@@ -963,3 +968,41 @@ async function prepararNuevaInspeccion(){
     ).value = consecutivo;
 
 }
+
+const vistaListado =
+document.getElementById("vistaListado");
+
+const vistaFormulario =
+document.getElementById("vistaFormulario");
+
+function mostrarListado(){
+
+    vistaFormulario.classList.remove("activa");
+
+    vistaListado.classList.add("activa");
+
+}
+
+function mostrarFormulario(){
+
+    vistaListado.classList.remove("activa");
+
+    vistaFormulario.classList.add("activa");
+
+}
+
+document
+.getElementById("btnNuevaInspeccion")
+.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        reiniciarFormulario();
+
+        mostrarFormulario();
+
+    }
+
+);
