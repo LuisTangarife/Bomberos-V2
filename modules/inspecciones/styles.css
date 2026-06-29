@@ -1013,3 +1013,103 @@
     }
 
 }
+
+/* ==========================================================
+CENTRO DE GESTIÓN
+==========================================================*/
+
+#inspectionDashboard{
+
+    display:block;
+
+}
+
+.inspection-toolbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.inspection-toolbar h1{
+
+    font-size:2rem;
+
+    font-weight:800;
+
+}
+
+.inspection-toolbar p{
+
+    margin-top:8px;
+
+    opacity:.7;
+
+}
+
+.inspection-filters{
+
+    display:flex;
+
+    gap:15px;
+
+    margin-bottom:30px;
+
+    flex-wrap:wrap;
+
+}
+
+.search-box{
+
+    flex:1;
+
+    min-width:280px;
+
+    display:flex;
+
+    align-items:center;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:14px 18px;
+
+    border:1px solid #ddd;
+
+    gap:12px;
+
+}
+
+.search-box input{
+
+    border:none;
+
+    outline:none;
+
+    width:100%;
+
+    background:none;
+
+}
+
+.inspection-cards{
+
+    display:grid;
+
+    grid-template-columns:
+
+    repeat(auto-fill,minmax(340px,1fr));
+
+    gap:24px;
+
+}
