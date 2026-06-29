@@ -1,6 +1,8 @@
 import {
 
-    guardarInspeccion
+    guardarInspeccion,
+
+    subirFotoStorage
 
 }
 from "./firebase.js";
@@ -449,7 +451,7 @@ function renderFotos(){
 
         card.innerHTML=`
 
-        <img src="${foto.preview}">
+        <img src="${foto.preview || foto.url}">
 
         <div class="photo-toolbar">
 
@@ -871,6 +873,23 @@ async function guardarFormulario(e){
         }
 
         const inspeccion = construirInspeccion();
+        const evidenciasStorage = [];
+
+        for(const foto of inspeccion.evidencias){
+        
+            const evidencia = await subirFotoStorage(
+        
+                inspeccion.consecutivo,
+        
+                foto
+        
+            );
+        
+            evidenciasStorage.push(evidencia);
+        
+        }
+        
+        inspeccion.evidencias = evidenciasStorage;
 
         validarInspeccion(inspeccion);
 
