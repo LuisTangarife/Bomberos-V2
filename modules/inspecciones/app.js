@@ -37,6 +37,40 @@ function init(){
 
   
 }
+const dashboard =
+document.getElementById("inspectionDashboard");
+
+const formulario =
+document.getElementById("inspectionWizard");
+
+function abrirFormulario(){
+
+    dashboard.style.display="none";
+
+    formulario.style.display="block";
+
+}
+
+function volverDashboard(){
+
+    formulario.style.display="none";
+
+    dashboard.style.display="block";
+
+}
+document
+
+.getElementById("btnNuevaInspeccion")
+
+.addEventListener(
+
+"click",
+
+()=>{
+
+    abrirFormulario();
+
+});
 /* =========================================================
    FECHA Y HORA
 ========================================================= */
