@@ -15,11 +15,9 @@ from "./firebase.js";
 
 document.addEventListener("DOMContentLoaded", init);
 
-function init(){
+async function init(){
 
     establecerFechaHora();
-
-    generarConsecutivo();
 
     configurarProgreso();
 
@@ -32,7 +30,7 @@ function init(){
     configurarFirmas();
 
     configurarAutoGuardado();
-    
+
     await prepararNuevaInspeccion();
 
   
@@ -58,19 +56,7 @@ function volverDashboard(){
     dashboard.style.display="block";
 
 }
-document
 
-.getElementById("btnNuevaInspeccion")
-
-.addEventListener(
-
-"click",
-
-()=>{
-
-    abrirFormulario();
-
-});
 /* =========================================================
    FECHA Y HORA
 ========================================================= */
@@ -843,7 +829,8 @@ function validarInspeccion(inspeccion){
 // FORMULARIO INSPECCIÓN
 // ==============================
 
-const formInspeccion = document.getElementById("formInspeccion");
+const formInspeccion =
+document.getElementById("inspectionForm");
 
 if (formInspeccion) {
 
@@ -898,17 +885,15 @@ async function guardarFormulario(e){
 
         await guardarInspeccion(
 
-          inspeccion.consecutivo,
-      
-          inspeccion
-        await guardarInspeccion(...);
+            inspeccion.consecutivo,
+        
+            inspeccion
+        
+        );
         
         await cargarInspecciones();
         
-        mostrarListado();
-      
-      );
-      
+        mostrarListado();      
       alert("Inspección guardada correctamente.");
       
       reiniciarFormulario();
@@ -941,14 +926,13 @@ async function guardarFormulario(e){
     }
 
 }
-
-function reiniciarFormulario(){
+async function reiniciarFormulario(){
 
     document
         .getElementById("inspectionForm")
         .reset();
 
-    evidencias = [];
+    evidencias=[];
 
     renderFotos();
 
@@ -963,7 +947,6 @@ function reiniciarFormulario(){
     actualizarProgreso();
 
 }
-
 function validarFormulario(){
 
     const requeridos = [
@@ -1027,15 +1010,13 @@ function mostrarFormulario(){
 
 document
 .getElementById("btnNuevaInspeccion")
-.addEventListener(
+.addEventListener("click", async ()=>{
 
-    "click",
+    await reiniciarFormulario();
 
-    ()=>{
+    mostrarFormulario();
 
-        reiniciarFormulario();
-
-        mostrarFormulario();
+});
 
     }
 
