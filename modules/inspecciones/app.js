@@ -1,21 +1,46 @@
 import {
-
     guardarInspeccion,
-
     subirFotoStorage,
-
-    generarConsecutivo
-
-}
-from "./firebase.js";
+    generarConsecutivo,
+    cargarInspecciones,
+    eliminarInspeccion
+} from "./firebase.js";
 
 /* =========================================================
-   APP INSPECCIONES
+   APP INSPECCIONES V2
 ========================================================= */
 
-document.addEventListener("DOMContentLoaded", init);
+/* =========================================================
+   ESTADO GLOBAL
+========================================================= */
 
-async function init(){
+let inspeccionActual = null;
+let evidencias = [];
+let modoEdicion = false;
+
+/* =========================================================
+   REFERENCIAS DEL DOM
+========================================================= */
+
+const dashboard = document.getElementById("inspectionDashboard");
+
+const vistaListado = document.getElementById("vistaListado");
+
+const vistaFormulario = document.getElementById("vistaFormulario");
+
+const wizard = document.getElementById("inspectionWizard");
+
+const formulario = document.getElementById("inspectionForm");
+
+const btnNuevaInspeccion = document.getElementById("btnNuevaInspeccion");
+
+/* =========================================================
+   INICIO
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", iniciarApp);
+
+async function iniciarApp() {
 
     establecerFechaHora();
 
@@ -31,195 +56,159 @@ async function init(){
 
     configurarAutoGuardado();
 
+    configurarEventos();
+
     await prepararNuevaInspeccion();
 
-  
-}
+    await cargarListado();
 
-/* =========================================================
-   FECHA Y HORA
-========================================================= */
-
-function establecerFechaHora(){
-
-    const hoy =
-    new Date();
-
-    const fecha =
-    document.getElementById("fecha");
-
-    const hora =
-    document.getElementById("hora");
-
-    if(fecha){
-
-        fecha.value =
-        hoy.toISOString().split("T")[0];
-
-    }
-
-    if(hora){
-
-        hora.value =
-        hoy.toTimeString().substring(0,5);
-
-    }
+    mostrarDashboard();
 
 }
 
-
 /* =========================================================
-   PROGRESO
+   EVENTOS
 ========================================================= */
 
-function configurarProgreso(){
+function configurarEventos() {
+
+    if (btnNuevaInspeccion) {
+
+        btnNuevaInspeccion.addEventListener(
+            "click",
+            nuevaInspeccion
+        );
+
+    }
+
+    if (formulario) {
+
+        formulario.addEventListener(
+            "submit",
+            guardarFormulario
+        );
+
+    }
+
+}
+
+/* =========================================================
+   LISTADO
+========================================================= */
+
+async function cargarListado() {
+
+    if (typeof cargarInspecciones !== "function") return;
+
+    await cargarInspecciones();
+
+}
+/* =========================================================
+   NAVEGACIÓN ENTRE VISTAS
+========================================================= */
+
+function mostrarDashboard() {
+
+    if (dashboard)
+        dashboard.style.display = "block";
+
+    if (vistaListado)
+        vistaListado.classList.add("activa");
+
+    if (vistaFormulario)
+        vistaFormulario.classList.remove("activa");
+
+    if (wizard)
+        wizard.style.display = "none";
+
+}
+
+function mostrarFormulario() {
+
+    if (dashboard)
+        dashboard.style.display = "none";
+
+    if (vistaListado)
+        vistaListado.classList.remove("activa");
+
+    if (vistaFormulario)
+        vistaFormulario.classList.add("activa");
+
+    if (wizard)
+        wizard.style.display = "block";
 
     actualizarProgreso();
 
-    document
-    .querySelectorAll(
-        "input,select,textarea"
-    )
-    .forEach(campo=>{
+}
 
-        campo.addEventListener(
-            "input",
-            actualizarProgreso
-        );
+async function nuevaInspeccion() {
 
-        campo.addEventListener(
-            "change",
-            actualizarProgreso
-        );
+    await reiniciarFormulario();
 
-    });
+    mostrarFormulario();
 
 }
 
-function actualizarProgreso(){
+async function editarInspeccion(inspeccion) {
 
-    const campos =
-    document.querySelectorAll(
-        "input,select,textarea"
-    );
+    inspeccionActual = inspeccion;
 
-    let llenos = 0;
+    modoEdicion = true;
 
-    campos.forEach(campo=>{
+    cargarFormulario(inspeccion);
 
-        if(
-            campo.type==="radio"
-        ){
+    mostrarFormulario();
 
-            if(document.querySelector(
-                `input[name="${campo.name}"]:checked`
-            )){
+}
 
-                llenos++;
+async function regresarListado() {
 
-            }
+    await cargarListado();
 
-        }
-
-        else if(
-            campo.type==="checkbox"
-        ){
-
-            if(campo.checked)
-                llenos++;
-
-        }
-
-        else{
-
-            if(campo.value.trim()!=="")
-                llenos++;
-
-        }
-
-    });
-
-    const porcentaje =
-    Math.round(
-        llenos*100/campos.length
-    );
-
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-    porcentaje+"%";
-
-    document.getElementById(
-        "progressText"
-    ).textContent =
-    porcentaje+"%";
+    mostrarDashboard();
 
 }
 
 /* =========================================================
-   SCROLL TOP
+   FORMULARIO
 ========================================================= */
 
-function configurarScrollTop(){
-
-    const boton =
-    document.getElementById(
-        "scrollTop"
-    );
-
-    window.addEventListener(
-        "scroll",
-        ()=>{
-
-            boton.style.display =
-            window.scrollY>500
-            ?"block"
-            :"none";
-
-        });
-
-    boton.onclick=()=>{
-
-        window.scrollTo({
-
-            top:0,
-
-            behavior:"smooth"
-
-        });
-
-    };
-
-}
-// ======================================
-// ESTADO DEL FORMULARIO
-// ======================================
-
-let inspeccionActual = null;
-
-let evidencias = [];
-
-let modoEdicion = false;
-
-function obtenerValor(id){
+function obtenerValor(id) {
 
     const elemento = document.getElementById(id);
 
-    if(!elemento) return "";
+    if (!elemento)
+        return "";
 
-    if(elemento.type === "checkbox"){
-
+    if (elemento.type === "checkbox")
         return elemento.checked;
-
-    }
 
     return elemento.value.trim();
 
 }
 
-function construirInspeccion(){
+function asignarValor(id, valor) {
 
-    return{
+    const elemento = document.getElementById(id);
+
+    if (!elemento)
+        return;
+
+    if (elemento.type === "checkbox") {
+
+        elemento.checked = !!valor;
+
+        return;
+
+    }
+
+    elemento.value = valor ?? "";
+
+}
+
+function construirInspeccion() {
+
+    return {
 
         id: inspeccionActual?.id || null,
 
@@ -229,689 +218,156 @@ function construirInspeccion(){
 
         hora: obtenerValor("hora"),
 
+        estado: obtenerValor("estado"),
+
         tipoInspeccion: obtenerValor("tipoInspeccion"),
 
         establecimiento: obtenerValor("establecimiento"),
 
-        propietario: obtenerValor("propietario"),
-
-        documento: obtenerValor("documento"),
-
-        telefono: obtenerValor("telefono"),
-
-        correo: obtenerValor("correo"),
+        nit: obtenerValor("nit"),
 
         direccion: obtenerValor("direccion"),
 
         barrio: obtenerValor("barrio"),
 
+        telefono: obtenerValor("telefono"),
+
+        correo: obtenerValor("correo"),
+
+        propietario: obtenerValor("propietario"),
+
+        representante: obtenerValor("representante"),
+
         municipio: obtenerValor("municipio"),
 
-        observaciones: obtenerValor("observaciones"),
+        inspector: obtenerValor("inspector"),
+
+        acompanante: obtenerValor("acompanante"),
 
         recomendaciones: obtenerValor("recomendaciones"),
 
-        concepto: obtenerValor("concepto"),
+        observaciones: obtenerValor("observacionesFinales"),
 
-        estado: obtenerValor("estado"),
+        conclusion: obtenerValor("conclusion"),
 
-        estadoDocumento: "ACTIVA",
-        
-        version: 1,
-        
-        ultimaEdicion: new Date().toISOString(),
-        
-        inspector:{
-        
-            nombre: obtenerValor("nombreInspector"),
-        
-            cargo: obtenerValor("cargoInspector")
-        
-        },
-        
-        firmas:{
-        
+        resultado: obtenerValor("resultado"),
+
+        fechaRegistro: new Date().toISOString(),
+
+        evidencias: [...evidencias],
+
+        firmas: {
+
             inspector: obtenerFirma("firmaInspector"),
-        
+
             representante: obtenerFirma("firmaRepresentante")
-        
-        },
-        
-        evidencias:[...evidencias]
+
+        }
 
     };
 
 }
-/* =========================================================
-   MENU
-========================================================= */
 
-function configurarMenu(){
+function cargarFormulario(inspeccion) {
 
-    const enlaces =
-    document.querySelectorAll(
-        ".floating-nav a"
-    );
+    asignarValor("numeroInspeccion", inspeccion.consecutivo);
 
-    enlaces.forEach(enlace=>{
+    asignarValor("fecha", inspeccion.fecha);
 
-        enlace.addEventListener(
-            "click",
-            e=>{
+    asignarValor("hora", inspeccion.hora);
 
-                e.preventDefault();
+    asignarValor("estado", inspeccion.estado);
 
-                const destino =
-                document.querySelector(
-                    enlace.getAttribute("href")
-                );
+    asignarValor("tipoInspeccion", inspeccion.tipoInspeccion);
 
-                destino.scrollIntoView({
+    asignarValor("establecimiento", inspeccion.establecimiento);
 
-                    behavior:"smooth"
+    asignarValor("nit", inspeccion.nit);
 
-                });
+    asignarValor("direccion", inspeccion.direccion);
 
-            });
+    asignarValor("barrio", inspeccion.barrio);
 
-    });
+    asignarValor("telefono", inspeccion.telefono);
 
-}
+    asignarValor("correo", inspeccion.correo);
 
-/* =========================================================
-   FOTOS
-========================================================= */
+    asignarValor("propietario", inspeccion.propietario);
 
+    asignarValor("representante", inspeccion.representante);
 
-function configurarFotos(){
+    asignarValor("municipio", inspeccion.municipio);
 
-    const input=document.getElementById("photoInput");
+    asignarValor("inspector", inspeccion.inspector);
 
-    document
-    .getElementById("btnCamera")
-    .onclick=()=>input.click();
+    asignarValor("acompanante", inspeccion.acompanante);
 
-    document
-    .getElementById("btnGallery")
-    .onclick=()=>input.click();
+    asignarValor("recomendaciones", inspeccion.recomendaciones);
 
-   input.addEventListener("change", async (e)=>{
-   
-       for(const archivo of e.target.files){
-   
-           const base64 = await convertirBase64(archivo);
-   
-           evidencias.push({
-   
-               id: crypto.randomUUID(),
-   
-               nombre: archivo.name,
-   
-               tipo: archivo.type,
-   
-               fecha: Date.now(),
-   
-               orden: evidencias.length + 1,
-   
-               archivo,
-   
-               preview: base64
-   
-           });
-   
-       }
-   
-       renderFotos();
-   
-   });
+    asignarValor("observacionesFinales", inspeccion.observaciones);
 
-}
+    asignarValor("conclusion", inspeccion.conclusion);
 
-function convertirBase64(file){
+    asignarValor("resultado", inspeccion.resultado);
 
-    return new Promise((resolve,reject)=>{
-
-        const reader = new FileReader();
-
-        reader.onload = ()=>resolve(reader.result);
-
-        reader.onerror = reject;
-
-        reader.readAsDataURL(file);
-
-    });
-
-}
-function renderFotos(){
-
-    const preview=
-    document.getElementById("photoPreview");
-
-    preview.innerHTML="";
-
-    if(evidencias.length===0){
-
-        preview.innerHTML=`
-
-        <div class="photo-placeholder">
-
-            <i class="fa-solid fa-images"></i>
-
-            <span>
-
-                Aún no hay fotografías
-
-            </span>
-
-        </div>
-
-        `;
-
-        return;
-
-    }
-
-    evidencias.forEach((foto,index)=>{
-
-        const card=document.createElement("div");
-
-        card.className="photo-card";
-
-        card.innerHTML=`
-
-        <img src="${foto.preview || foto.url}">
-
-        <div class="photo-toolbar">
-
-            <button
-                type="button"
-                onclick="subirFoto(${index})">
-
-                <i class="fa-solid fa-arrow-up"></i>
-
-            </button>
-
-            <button
-                type="button"
-                onclick="bajarFoto(${index})">
-
-                <i class="fa-solid fa-arrow-down"></i>
-
-            </button>
-
-            <button
-                type="button"
-                onclick="eliminarFoto(${index})">
-
-                <i class="fa-solid fa-trash"></i>
-
-            </button>
-
-        </div>
-
-        `;
-
-        preview.appendChild(card);
-
-    });
-
-}
-function eliminarFoto(index){
-
-    evidencias.splice(index,1);
-
-    evidencias.forEach((foto,i)=>{
-
-        foto.orden = i + 1;
-
-    });
+    evidencias = inspeccion.evidencias || [];
 
     renderFotos();
 
-}
-
-function subirFoto(i){
-
-    if(i===0) return;
-
-    [evidencias[i],evidencias[i-1]]=
-
-    [evidencias[i-1],evidencias[i]];
-
-    renderFotos();
+    actualizarProgreso();
 
 }
 
-function bajarFoto(i){
+function validarFormulario() {
 
-    if(i===evidencias.length-1) return;
+    const obligatorios = [
 
-    [evidencias[i],evidencias[i+1]]=
+        "fecha",
 
-    [evidencias[i+1],evidencias[i]];
+        "tipoInspeccion",
 
-    renderFotos();
+        "establecimiento",
 
-}
-/* =========================================================
-   FIRMAS
-========================================================= */
+        "direccion"
 
-function configurarFirmas(){
+    ];
 
-    inicializarFirma("firmaInspector");
+    for (const id of obligatorios) {
 
-    inicializarFirma("firmaRepresentante");
+        const campo = document.getElementById(id);
 
-    document
-    .querySelectorAll(".clear-signature")
-    .forEach(btn=>{
+        if (!campo)
+            continue;
 
-        btn.onclick=()=>{
+        if (campo.value.trim() === "") {
 
-            limpiarFirma(btn.dataset.canvas);
+            campo.focus();
 
-        };
-
-    });
-
-}
-
-function inicializarFirma(id){
-
-    const canvas =
-    document.getElementById(id);
-
-    const ctx =
-    canvas.getContext("2d");
-
-    ajustarCanvas(canvas,ctx);
-
-    let dibujando=false;
-
-    function obtenerPosicion(event){
-
-        const rect =
-        canvas.getBoundingClientRect();
-
-        const escalaX =
-        canvas.width / rect.width;
-
-        const escalaY =
-        canvas.height / rect.height;
-
-        let clienteX;
-        let clienteY;
-
-        if(event.touches){
-
-            clienteX =
-            event.touches[0].clientX;
-
-            clienteY =
-            event.touches[0].clientY;
-
-        }else{
-
-            clienteX =
-            event.clientX;
-
-            clienteY =
-            event.clientY;
-
-        }
-
-        return{
-
-            x:(clienteX-rect.left)*escalaX,
-
-            y:(clienteY-rect.top)*escalaY
-
-        };
-
-    }
-
-    function iniciar(event){
-
-        dibujando=true;
-
-        const p=
-        obtenerPosicion(event);
-
-        ctx.beginPath();
-
-        ctx.moveTo(p.x,p.y);
-
-       const estado =
-       canvas.parentElement.querySelector(
-       ".signature-status"
-       );
-      
-       if(estado){
-      
-           estado.textContent="Firma registrada";
-      
-           estado.style.color="#16a34a";
-      
-       }
-
-    }
-
-    function mover(event){
-
-        if(!dibujando) return;
-
-        event.preventDefault();
-
-        const p=
-        obtenerPosicion(event);
-
-        ctx.lineTo(p.x,p.y);
-
-        ctx.stroke();
-
-    }
-
-    function terminar(){
-
-        dibujando=false;
-
-    }
-
-    canvas.addEventListener(
-        "mousedown",
-        iniciar
-    );
-
-    canvas.addEventListener(
-        "mousemove",
-        mover
-    );
-
-    canvas.addEventListener(
-        "mouseup",
-        terminar
-    );
-
-    canvas.addEventListener(
-        "mouseleave",
-        terminar
-    );
-
-    canvas.addEventListener(
-        "touchstart",
-        iniciar,
-        {passive:false}
-    );
-
-    canvas.addEventListener(
-        "touchmove",
-        mover,
-        {passive:false}
-    );
-
-    canvas.addEventListener(
-        "touchend",
-        terminar
-    );
-
-    window.addEventListener(
-        "resize",
-        ()=>ajustarCanvas(canvas,ctx)
-    );
-
-}
-function limpiarFirma(id){
-
-    const canvas=document.getElementById(id);
-
-    canvas
-    .getContext("2d")
-    .clearRect(
-
-        0,
-
-        0,
-
-        canvas.width,
-
-        canvas.height
-
-    );
-
-}
-function obtenerFirma(id){
-
-    return document
-        .getElementById(id)
-        .toDataURL("image/png");
-
-}
-function ajustarCanvas(canvas,ctx){
-
-    const ratio =
-    window.devicePixelRatio || 1;
-
-    const ancho =
-    canvas.offsetWidth;
-
-    const alto =
-    canvas.offsetHeight;
-
-    const imagen =
-    canvas.toDataURL();
-
-    canvas.width =
-    ancho * ratio;
-
-    canvas.height =
-    alto * ratio;
-
-    ctx.scale(ratio,ratio);
-
-    ctx.lineWidth=2.5;
-
-    ctx.lineCap="round";
-
-    ctx.lineJoin="round";
-
-    ctx.strokeStyle="#111827";
-
-    if(imagen.length>6){
-
-        const img =
-        new Image();
-
-        img.onload=()=>{
-
-            ctx.drawImage(
-                img,
-                0,
-                0,
-                ancho,
-                alto
-            );
-
-        };
-
-        img.src=imagen;
-
-    }
-
-}
-
-/* =========================================================
-   AUTOGUARDADO
-========================================================= */
-
-function configurarAutoGuardado(){
-
-    const form =
-    document.getElementById(
-        "inspectionForm"
-    );
-
-    form.addEventListener(
-        "input",
-        ()=>{
-
-            const datos =
-            new FormData(form);
-
-            const json={};
-
-            datos.forEach(
-                (v,k)=>json[k]=v
-            );
-
-            localStorage.setItem(
-
-                "inspectionDraft",
-
-                JSON.stringify(json)
-
-            );
-
-        });
-
-}
-
-function validarInspeccion(inspeccion){
-
-    if(!inspeccion.fecha){
-
-        throw new Error("Seleccione la fecha.");
-
-    }
-
-    if(!inspeccion.tipoInspeccion){
-
-        throw new Error("Seleccione el tipo de inspección.");
-
-    }
-
-    if(!inspeccion.establecimiento){
-
-        throw new Error("Ingrese el establecimiento.");
-
-    }
-
-    if(!inspeccion.direccion){
-
-        throw new Error("Ingrese la dirección.");
-
-    }
-
-}
-
-// ==============================
-// FORMULARIO INSPECCIÓN
-// ==============================
-
-const formInspeccion =
-document.getElementById("inspectionForm");
-
-if (formInspeccion) {
-
-    formInspeccion.addEventListener(
-       "submit",
-       guardarFormulario
-   );
-
-}
-
-async function guardarFormulario(e){
-
-    e.preventDefault();
-
-    try{
-
-        validarFormulario();
-
-        const btn = e.submitter;
-
-        if(btn){
-
-            btn.disabled = true;
-
-            btn.innerHTML = `
-                <i class="fa-solid fa-spinner fa-spin"></i>
-                Guardando...
-            `;
-
-        }
-
-        const inspeccion = construirInspeccion();
-        const evidenciasStorage = [];
-
-        for(const foto of inspeccion.evidencias){
-        
-            const evidencia = await subirFotoStorage(
-        
-                inspeccion.consecutivo,
-        
-                foto
-        
-            );
-        
-            evidenciasStorage.push(evidencia);
-        
-        }
-        
-        inspeccion.evidencias = evidenciasStorage;
-
-        validarInspeccion(inspeccion);
-
-        await guardarInspeccion(
-
-            inspeccion.consecutivo,
-        
-            inspeccion
-        
-        );
-        
-        await cargarInspecciones();
-        
-        mostrarListado();      
-      alert("Inspección guardada correctamente.");
-      
-      reiniciarFormulario();
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-        alert(error.message);
-
-    }
-
-    finally{
-
-        const btn = e.submitter;
-
-        if(btn){
-
-            btn.disabled = false;
-
-            btn.innerHTML = `
-                <i class="fa-solid fa-floppy-disk"></i>
-                Guardar Inspección
-            `;
+            throw new Error("Complete todos los campos obligatorios.");
 
         }
 
     }
 
 }
-async function reiniciarFormulario(){
 
-    document
-        .getElementById("inspectionForm")
-        .reset();
+async function prepararNuevaInspeccion() {
 
-    evidencias=[];
+    inspeccionActual = null;
+
+    modoEdicion = false;
+
+    const consecutivo = await generarConsecutivo();
+
+    asignarValor("numeroInspeccion", consecutivo);
+
+}
+
+async function reiniciarFormulario() {
+
+    formulario.reset();
+
+    evidencias = [];
 
     renderFotos();
 
@@ -926,74 +382,182 @@ async function reiniciarFormulario(){
     actualizarProgreso();
 
 }
-function validarFormulario(){
 
-    const requeridos = [
+/* =========================================================
+   GUARDAR INSPECCIÓN
+========================================================= */
 
-        "fecha",
-        "direccion",
-        "tipoInspeccion"
+async function guardarFormulario(e) {
 
-    ];
+    e.preventDefault();
 
-    for(const id of requeridos){
+    try {
 
-        const campo = document.getElementById(id);
+        validarFormulario();
 
-        if(!campo) continue;
+        const boton = e.submitter;
 
-        if(!campo.value.trim()){
+        if (boton) {
 
-            campo.focus();
+            boton.disabled = true;
 
-            throw new Error("Todos los campos obligatorios deben completarse.");
+            boton.innerHTML = `
+                <i class="fa-solid fa-spinner fa-spin"></i>
+                Guardando...
+            `;
+
+        }
+
+        const inspeccion = construirInspeccion();
+
+        /* ==========================================
+           SUBIR EVIDENCIAS
+        ========================================== */
+
+        const fotosStorage = [];
+
+        for (const foto of evidencias) {
+
+            if (foto.archivo) {
+
+                const subida = await subirFotoStorage(
+
+                    inspeccion.consecutivo,
+
+                    foto
+
+                );
+
+                fotosStorage.push(subida);
+
+            }
+
+            else {
+
+                fotosStorage.push(foto);
+
+            }
+
+        }
+
+        inspeccion.evidencias = fotosStorage;
+
+        /* ==========================================
+           GUARDAR EN FIREBASE
+        ========================================== */
+
+        await guardarInspeccion(
+
+            inspeccion.consecutivo,
+
+            inspeccion
+
+        );
+
+        alert("Inspección guardada correctamente.");
+
+        await reiniciarFormulario();
+
+        await cargarListado();
+
+        mostrarDashboard();
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
+
+    finally {
+
+        const boton = e.submitter;
+
+        if (boton) {
+
+            boton.disabled = false;
+
+            boton.innerHTML = `
+                <i class="fa-solid fa-floppy-disk"></i>
+                Guardar Inspección
+            `;
 
         }
 
     }
 
 }
-async function prepararNuevaInspeccion(){
 
-    const consecutivo = await generarConsecutivo();
+/* =========================================================
+   ELIMINAR
+========================================================= */
 
-    document.getElementById(
+async function borrarInspeccion(id) {
 
-        "numeroInspeccion"
+    if (!confirm("¿Desea eliminar esta inspección?"))
+        return;
 
-    ).value = consecutivo;
+    try {
 
-}
+        await eliminarInspeccion(id);
 
-const vistaListado =
-document.getElementById("vistaListado");
+        await cargarListado();
 
-const vistaFormulario =
-document.getElementById("vistaFormulario");
+    }
 
-function mostrarListado(){
+    catch (error) {
 
-    vistaFormulario.classList.remove("activa");
+        console.error(error);
 
-    vistaListado.classList.add("activa");
+        alert(error.message);
 
-}
-
-function mostrarFormulario(){
-
-    vistaListado.classList.remove("activa");
-
-    vistaFormulario.classList.add("activa");
+    }
 
 }
 
-document
-.getElementById("btnNuevaInspeccion")
-.addEventListener("click", async ()=>{
+/* =========================================================
+   EDITAR
+========================================================= */
 
-    await reiniciarFormulario();
+async function abrirEdicion(inspeccion) {
+
+    inspeccionActual = inspeccion;
+
+    modoEdicion = true;
+
+    cargarFormulario(inspeccion);
 
     mostrarFormulario();
 
-});
+}
 
+/* =========================================================
+   CANCELAR
+========================================================= */
+
+async function cancelarFormulario() {
+
+    await reiniciarFormulario();
+
+    mostrarDashboard();
+
+}
+
+/* =========================================================
+   EXPONER FUNCIONES
+========================================================= */
+
+window.editarInspeccion = abrirEdicion;
+
+window.eliminarInspeccion = borrarInspeccion;
+
+window.cancelarFormulario = cancelarFormulario;
+
+window.subirFoto = subirFoto;
+
+window.bajarFoto = bajarFoto;
+
+window.eliminarFoto = eliminarFoto;
