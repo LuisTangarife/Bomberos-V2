@@ -34,12 +34,106 @@
         <header id="header"></header>
 
         <main class="inspection-page">
+        <!-- =======================================================
+        CENTRO DE GESTIÓN
+        ======================================================= -->
+        
+        <section id="inspectionDashboard">
+        
+            <div class="inspection-toolbar">
+        
+                <div>
+        
+                    <h1>
+        
+                        <i class="fa-solid fa-building-shield"></i>
+        
+                        Centro de Gestión de Inspecciones
+        
+                    </h1>
+        
+                    <p>
+        
+                        Administre todas las inspecciones realizadas desde un único lugar.
+        
+                    </p>
+        
+                </div>
+        
+                <button
+                    id="btnNuevaInspeccion"
+                    class="btn-primary">
+        
+                    <i class="fa-solid fa-plus"></i>
+        
+                    Nueva inspección
+        
+                </button>
+        
+            </div>
+        
+            <div class="inspection-filters">
+        
+                <div class="search-box">
+        
+                    <i class="fa-solid fa-search"></i>
+        
+                    <input
+                        type="search"
+                        id="buscarInspeccion"
+                        placeholder="Buscar inspección...">
+        
+                </div>
+        
+                <select id="filtroEstado">
+        
+                    <option value="">Todos los estados</option>
+        
+                    <option>Pendiente</option>
+        
+                    <option>En proceso</option>
+        
+                    <option>Finalizada</option>
+        
+                </select>
+        
+            </div>
+        
+            <div
+                id="inspectionCards"
+                class="inspection-cards">
+        
+            </div>
+        
+        </section>
+        <div id="inspeccionesApp">
+
+        <!-- ==========================
+             VISTA LISTADO
+        =========================== -->
+    
+        <section
+            id="vistaListado"
+            class="vista activa">
+    
+        </section>
+    
+        <!-- ==========================
+             VISTA FORMULARIO
+        =========================== -->
+    
+        <section
+            id="vistaFormulario"
+            class="vista">   
 
             <!-- ========================================= -->
             <!-- HERO -->
             <!-- ========================================= -->
 
-            <section class="page-hero">
+            <section
+            class="page-hero"
+            id="inspectionWizard"
+            style="display:none;">
 
                 <div>
 
@@ -1762,7 +1856,9 @@
                 <a href="#firmas">Firmas</a>
             
             </nav>
-
+        </section>
+        
+        </div>
         </main>
 
     </div>
