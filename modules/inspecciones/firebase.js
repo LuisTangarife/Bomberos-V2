@@ -1,41 +1,16 @@
 /* =========================================================
    FIREBASE - INSPECCIONES
 ========================================================= */
-
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-
 import {
 
-    getFirestore,
+    db,
 
-    doc,
-
-    setDoc,
-
-    getDoc,
-
-    getDocs,
-
-    collection,
-
-    deleteDoc,
-
-    updateDoc,
-
-    query,
-
-    orderBy,
-
-    serverTimestamp
+    storage
 
 }
-from
-"https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+from "../../firebase/config.js";
 
 import {
-
-    getStorage,
 
     ref,
 
@@ -49,27 +24,77 @@ import {
 from
 "https://www.gstatic.com/firebasejs/11.9.1/firebase-storage.js";
 
-const firebaseConfig = {
+/* =========================================================
+   SUBIR FOTO
+========================================================= */
 
-    apiKey: "...",
+export async function subirFotoStorage(consecutivo, foto){
 
-    authDomain: "...",
+    const extension = foto.nombre.split(".").pop();
 
-    projectId: "...",
+    const nombreArchivo = `${foto.id}.${extension}`;
 
-    storageBucket: "...",
+    const ruta = ref(
 
-    messagingSenderId: "...",
+        storage,
 
-    appId: "..."
+        `inspecciones/${consecutivo}/${nombreArchivo}`
 
-};
+    );
 
-const app = initializeApp(firebaseConfig);
+    await uploadBytes(
 
-const db = getFirestore(app);
+        ruta,
 
-const storage = getStorage(app);
+        foto.archivo,
+
+        {
+
+            contentType: foto.tipo
+
+        }
+
+    );
+
+    const url = await getDownloadURL(ruta);
+
+    return{
+
+        id: foto.id,
+
+        nombre: foto.nombre,
+
+        tipo: foto.tipo,
+
+        orden: foto.orden,
+
+        url
+
+    };
+
+}
+
+/* =========================================================
+   ELIMINAR FOTO
+========================================================= */
+
+export async function eliminarFotoStorage(consecutivo,foto){
+
+    const extension = foto.nombre.split(".").pop();
+
+    const nombreArchivo = `${foto.id}.${extension}`;
+
+    const ruta = ref(
+
+        storage,
+
+        `inspecciones/${consecutivo}/${nombreArchivo}`
+
+    );
+
+    await deleteObject(ruta);
+
+}
 
 export {
 
